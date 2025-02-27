@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mobicom</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="icon" href="favicon.webp">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"> <!--for icon-->
+    <style>
+        .sidebar {
+            background: #f8f9fa;
+            padding: 15px;
+            height: 100vh;
+            border-right: 1px solid #ddd;
+        }
+        .category {
+            cursor: pointer;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .category:hover {
+            background-color: #e9ecef;
+        }
+        #plans-section {
+            display: none; /* Initially hidden */
+        }
+        .plan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            width: 100%;
+            max-width: 100%;
+            padding: 15px;
+            text-align: center;
+        }
+        #lbl{
+            display:flex;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1020;
+            width: 100%;
+        }
+        .btn-custom {
+            background-color: #34495e;
+            border-color: #34495e;
+            color: white;
+        }
+        
+        .btn-custom:hover {
+            background-color: #2c3e50; /* Slightly darker shade on hover */
+            border-color: #2c3e50;
+        }
+        
+    </style>
+</head>
+<body>
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #34495e;">
+    <div class="container">
+        <a class="navbar-brand fs-5" href="#">Mobicom</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link text-white mx-2" href="#plans">Plans</a></li>
+                <li class="nav-item"><a class="nav-link text-white mx-2" href="#contact">Contact</a></li>
+                <li class="nav-item"><a class="nav-link text-white mx-2" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link text-white mx-2" href="#mobile-validation">Login</a></li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="profile.html" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="View Profile">
+                        <i class="bi bi-person-fill"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    <div id="dummy-name-section" class="text-start ms-5 my-4">
+        <h4>Ebin Mathew: <span id="mobile-number-span"></span></h4>
+    </div>
+    
+ 
+<!--Plans-->
+<div id="plans-section">
+    <div class="row mt-4">
+        <div class="col-md-2 ms-5 sidebar">
+            <h5 class="text-center">Packs & Top-ups</h5>
+            <div id="categories">
+                <div class="category w-100" data-category="Daily Data Plans">Daily Data Plans</div>
+                <div class="category w-100" data-category="Long-Term Validity Plans">Long-Term Validity Plans</div>
+                <div class="category w-100" data-category="Unlimited Talktime Plans">Unlimited Talktime Plans</div>
+                <div class="category w-100" data-category="ISD Plans">ISD Plans</div>
+                <div class="category w-100" data-category="True 5G Unlimited Plans">True 5G Unlimited Plans</div>
+                <div class="category w-100" data-category="Data Addon Packs">Data Addon Packs</div>
+                <div class="category w-100" data-category="Top-up">Top-up</div>
+                <div class="category w-100" data-category="Value Packs">Value Packs</div>
+                <div class="category w-100" data-category="Annual Packs">Annual Packs</div>
+            </div>
+        </div>       
+        <div class="col-md-9">
+            <h2 id="plan-category-title" class="text-center mb-4">Popular Plans</h2>
+            <div id="plan-container" class="plan-grid gap-3">
+                <!-- Plans will load dynamically here -->
+            </div>
+        
+        </div>
+    </div>
+</div>
+</div>
+
+
+</section>
+
+
+<script> 
+    // Ensure the plans section is visible on page load
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("plans-section").style.display = "block"; // Show the plans section
+        displayRandomPlans(); // Load default plans
+    });
+    
+    const plans = {
+        "Daily Data Plans": [
+            { name: "₹239 Plan", details: "1.5GB/day | 28 days | Unlimited Calls", amount: 239 },
+            { name: "₹299 Plan", details: "2GB/day | 28 days | Unlimited Calls", amount: 299 },
+            { name: "₹399 Plan", details: "3GB/day | 28 days | Unlimited Calls", amount: 399 },
+            { name: "₹499 Plan", details: "2.5GB/day | 56 days | Unlimited Calls", amount: 499 },
+            { name: "₹599 Plan", details: "3GB/day | 56 days | Unlimited Calls", amount: 599 },
+            { name: "₹799 Plan", details: "2.5GB/day | 84 days | Unlimited Calls", amount: 799 },
+            { name: "₹999 Plan", details: "3GB/day | 84 days | Unlimited Calls", amount: 999 }
+        ],
+        "Long-Term Validity Plans": [
+            { name: "₹666 Plan", details: "1.5GB/day | 84 days | Unlimited Calls", amount: 666 },
+            { name: "₹899 Plan", details: "2GB/day | 84 days | Unlimited Calls", amount: 899 },
+            { name: "₹1299 Plan", details: "3GB/day | 84 days | Unlimited Calls", amount: 1299 },
+            { name: "₹1599 Plan", details: "2.5GB/day | 180 days | Unlimited Calls", amount: 1599 },
+            { name: "₹1999 Plan", details: "3GB/day | 180 days | Unlimited Calls", amount: 1999 },
+            { name: "₹2499 Plan", details: "2.5GB/day | 365 days | Unlimited Calls", amount: 2499 },
+            { name: "₹2999 Plan", details: "3GB/day | 365 days | Unlimited Calls", amount: 2999 }
+        ],
+        "Unlimited Talktime Plans": [
+            { name: "₹129 Plan", details: "Unlimited Calls | 300 SMS | 28 days", amount: 129 },
+            { name: "₹179 Plan", details: "Unlimited Calls | 500 SMS | 30 days", amount: 179 },
+            { name: "₹229 Plan", details: "Unlimited Calls | 1000 SMS | 30 days", amount: 229 },
+            { name: "₹299 Plan", details: "Unlimited Calls | 1500 SMS | 56 days", amount: 299 },
+            { name: "₹399 Plan", details: "Unlimited Calls | 2000 SMS | 56 days", amount: 399 },
+            { name: "₹499 Plan", details: "Unlimited Calls | 2500 SMS | 84 days", amount: 499 },
+            { name: "₹599 Plan", details: "Unlimited Calls | 3000 SMS | 84 days", amount: 599 }
+        ],
+        "ISD Plans": [
+            { name: "₹50 ISD Plan", details: "50 mins | 30 days | Selected Countries", amount: 50 },
+            { name: "₹100 ISD Plan", details: "100 mins | 30 days | Selected Countries", amount: 100 },
+            { name: "₹90 ISD Plan", details: "90 mins | 30 days | Selected Countries", amount: 90 },
+            { name: "₹45 ISD Plan", details: "45 mins | 30 days | Selected Countries", amount: 45 },
+            { name: "₹200 ISD Plan", details: "200 mins | 30 days | Selected Countries", amount: 200 },
+            { name: "₹300 ISD Plan", details: "300 mins | 30 days | Selected Countries", amount: 300 },
+            { name: "₹500 ISD Plan", details: "500 mins | 30 days | Selected Countries", amount: 500 }
+        ],
+        "True 5G Unlimited Plans": [
+            { name: "₹899 Plan", details: "Unlimited 5G Data | 90 days | Unlimited Calls", amount: 899 },
+            { name: "₹1199 Plan", details: "Unlimited 5G Data | 90 days | Unlimited Calls", amount: 1199 },
+            { name: "₹1499 Plan", details: "Unlimited 5G Data | 180 days | Unlimited Calls", amount: 1499 },
+            { name: "₹1799 Plan", details: "Unlimited 5G Data | 180 days | Unlimited Calls", amount: 1799 },
+            { name: "₹2199 Plan", details: "Unlimited 5G Data | 365 days | Unlimited Calls", amount: 2199 },
+            { name: "₹2699 Plan", details: "Unlimited 5G Data | 365 days | Unlimited Calls", amount: 2699 },
+            { name: "₹3499 Plan", details: "Unlimited 5G Data | 365 days | Premium OTT Access", amount: 3499 }
+        ],
+        "Data Addon Packs": [
+            { name: "₹39 Add-on", details: "5GB Extra Data | 1 day", amount: 39 },
+            { name: "₹199 Add-on", details: "10GB Extra Data | 1 day", amount: 199 },
+            { name: "₹49 Add-on", details: "6GB Extra Data | 1 day", amount: 49 },
+            { name: "₹99 Add-on", details: "12GB Extra Data | 3 days", amount: 99 },
+            { name: "₹149 Add-on", details: "20GB Extra Data | 7 days", amount: 149 },
+            { name: "₹249 Add-on", details: "30GB Extra Data | 15 days", amount: 249 },
+            { name: "₹399 Add-on", details: "50GB Extra Data | 30 days", amount: 399 }
+        ],
+        "Top-up": [
+            { name: "₹50 Top-up", details: "Talktime ₹39.37", amount: 39 },
+            { name: "₹100 Top-up", details: "Talktime ₹78.74", amount: 100 },
+            { name: "₹200 Top-up", details: "Talktime ₹158.74", amount: 200 },
+            { name: "₹300 Top-up", details: "Talktime ₹238.74", amount: 300 },
+            { name: "₹500 Top-up", details: "Talktime ₹398.74", amount: 500 },
+            { name: "₹1000 Top-up", details: "Talktime ₹798.74", amount: 1000 },
+            { name: "₹2000 Top-up", details: "Talktime ₹1598.74", amount: 2000 }
+        ],
+        "Value Packs": [
+            { name: "₹75 Value Pack", details: "200MB Data | 30 days", amount: 75 },
+            { name: "₹150 Value Pack", details: "500MB Data | 30 days", amount: 150 },
+            { name: "₹499 Value Pack", details: "6GB Data | 84 days | Unlimited Calls", amount: 499 },
+            { name: "₹999 Value Pack", details: "12GB Data | 180 days | Unlimited Calls", amount: 999 },
+            { name: "₹1499 Value Pack", details: "24GB Data | 365 days | Unlimited Calls", amount: 1499 },
+            { name: "₹1999 Value Pack", details: "36GB Data | 365 days | Unlimited Calls", amount: 1999 },
+            { name: "₹2499 Value Pack", details: "48GB Data | 365 days | Unlimited Calls", amount: 2499 }
+        ],
+        "Annual Packs": [
+            { name: "₹2999 Annual", details: "2.5GB/day | 365 days | Unlimited Calls", amount: 2999 },
+            { name: "₹3999 Annual", details: "3GB/day | 365 days | Unlimited Calls", amount: 3999 },
+            { name: "₹4999 Annual", details: "3.5GB/day | 365 days | Unlimited Calls", amount: 4999 },
+            { name: "₹5999 Annual", details: "4GB/day | 365 days | Unlimited Calls", amount: 5999 },
+            { name: "₹6999 Annual", details: "4.5GB/day | 365 days | Unlimited Calls", amount: 6999 },
+            { name: "₹7999 Annual", details: "5GB/day | 365 days | Unlimited Calls", amount: 7999 },
+            { name: "₹8999 Annual", details: "6GB/day | 365 days | Unlimited Calls", amount: 8999 }
+        ]
+    };
+    // Function to display random popular plans
+    function displayRandomPlans() {
+        const planContainer = document.getElementById("plan-container");
+        planContainer.innerHTML = ''; // Clear previous content
+        let allPlans = [];
+    
+        // Pick random plans from each category
+        for (let category in plans) {
+            const randomPlan = plans[category][Math.floor(Math.random() * plans[category].length)];
+            allPlans.push(randomPlan);
+        }
+    
+        // Display plans
+        allPlans.forEach(plan => {
+            let planCard = `
+                <div class="card my-2 mx-2 py-3 px-2 text-center">
+                    <h4>${plan.name}</h4>
+                    <p>${plan.details}</p>
+                    <div class="text-center">
+<button class="btn btn-custom w-50" onclick="selectPlan(${plan.amount}, '${plan.name}')">
+    Recharge Now
+</button>
+                    </div>
+                </div>
+            `;
+            planContainer.innerHTML += planCard;
+        });
+    }
+    
+    // Handle sidebar category clicks
+    const categoryElements = document.querySelectorAll(".category");
+    categoryElements.forEach(categoryElement => {
+        categoryElement.addEventListener("click", function() {
+            const categoryName = this.dataset.category;
+            document.getElementById("plan-category-title").innerText = categoryName;
+            displayPlansForCategory(categoryName);
+        });
+    });
+    
+    // Function to display selected category plans
+    function displayPlansForCategory(categoryName) {
+        const planContainer = document.getElementById("plan-container");
+        planContainer.innerHTML = ''; // Clear previous content
+    
+        plans[categoryName].forEach(plan => {
+            let planCard = `
+                <div class="card my-2 mx-2 py-3 px-2 text-center">
+                    <h4>${plan.name}</h4>
+                    <p>${plan.details}</p>
+                    <div class="text-center">
+<button class="btn btn-custom w-50" onclick="selectPlan(${plan.amount}, '${plan.name}')">
+    Recharge Now
+</button>
+                    </div>
+                </div>
+            `;
+            planContainer.innerHTML += planCard;
+        });
+    }
+    
+    // Store selected plan and redirect to Payment page
+    function selectPlan(amount, planName) {
+        let tax = Math.round(amount * 0.05);  
+        let totalPayable = amount + tax;  
+    
+        // Store the selected plan details in localStorage
+        localStorage.setItem("selectedPlan", JSON.stringify({
+            planName: planName,
+            baseAmount: amount,
+            tax: tax,
+            totalPayable: totalPayable
+        }));
+    
+        // Redirect to payment page
+        window.location.href = "Payment.html";
+    }
+    
+    </script>
+    
+</body>
+</html>

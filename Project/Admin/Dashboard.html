@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .dashboard {
+            width: 250px;
+            background: white;
+            color: black;
+            position: fixed;
+            top: 56px;
+            left: -250px;
+            height: 100vh;
+            transition: 0.3s;
+            padding-top: 10px;
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1050;
+        }
+        .dashboard a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            color: black;
+            border-bottom: 1px solid #ccc;
+           
+        }
+        .dashboard a:hover {
+            background: #f1f1f1;
+        }
+        .dashboard-toggle {
+            cursor: pointer;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 24px;
+            color: white;
+            z-index: 1100;
+        }
+        .content-container {
+            margin-left: 270px;
+            padding: 20px;
+            width: 100%;
+        }
+        .content {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+        .logout {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+        }
+    </style>
+</head>
+<body>
+
+       <!-- Navbar -->
+       <nav class="navbar navbar-expand-lg navbar-light bg-danger fixed-top">
+        <div class="container">
+            <span class="dashboard-toggle">&#9776;</span>
+            <a class="navbar-brand text-white fs-4" href="mobicom.html" >Mobicom</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-white mx-2" href="#plans">Plans</a></li>
+                    <li class="nav-item"><a class="nav-link text-white mx-2" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link text-white mx-2" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link text-white mx-2" href="#mobile-validation">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+
+
+
+    <!-- Sidebar Dashboard -->
+    <div class="dashboard" id="dashboard">
+        <a href="#" onclick="showContent('recharge')">Recharge History</a>
+        <a href="#" onclick="showContent('email')">Verify Email</a>
+        <a href="#" onclick="showContent('autopay')">Set Auto Pay</a>
+        <a href="#" class="logout">Logout <i class="bi bi-power"></i></a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content-container">
+        
+        <!-- Recharge History -->
+        <div class="content active" id="recharge">
+            <h2 class="text-danger">Recharge History</h2>
+            <div class="card w-50">
+                <h3>₹299 Plan - 2GB/day</h3>
+                <p>Recharged on: 10th Feb 2025</p>
+                <p>Expires on: 10th March 2025</p>
+            </div>
+            <div class="card w-50">
+                <h3>₹499 Plan - 3GB/day</h3>
+                <p>Recharged on: 5th Jan 2025</p>
+                <p>Expires on: 2nd March 2025</p>
+            </div>
+        </div>
+
+        <!-- Verify Email -->
+        <div class="content" id="email">
+            <h2 class="text-danger">Verify Email</h2>
+            <div class="card w-50">
+                <h3>Status: Not Verified</h3>
+                <p>Click the verification link sent to your email.</p>
+                <p>If not received, <a href="#">Resend Email</a>.</p>
+            </div>
+            <div class="card w-50">
+                <h3>Verified Emails</h3>
+                <p>Email: user@example.com (Verified on 5th Jan 2025)</p>
+            </div>
+        </div>
+
+        <!-- Set Auto Pay -->
+        <div class="content" id="autopay">
+            <h2 class="text-danger">Set Auto Pay</h2>
+            <div class="p-2 card w-50 ">
+                <h3>Auto Pay Status: Enabled</h3>
+                <p>Next Payment: ₹299 on 10th March 2025</p>
+                <p>Payment Method: **** **** **** 1234</p>
+                <p><a href="#">Change Payment Method</a></p>
+            </div>
+            <div class="card w-50 ">
+                <h3>Recent Payments</h3>
+                <p>₹299 deducted on 10th Feb 2025</p>
+                <p>₹499 deducted on 5th Jan 2025</p>
+            </div>
+        </div>
+
+    <!-- Data Usage Chart -->
+<div class="content" id="data-usage">
+    <h2 class="text-danger">Data Usage Overview</h2>
+    <canvas id="dataChart" width="400" height="200"></canvas>
+</div>
+
+<section id="faq" class="container my-5">
+    <h2 class="text-center mb-4 text-danger">Frequently Asked Questions</h2>
+    <div class="accordion" id="faqAccordion">
+        
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faqOne">
+                <button class="accordion-button collapsed text-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqOne" aria-expanded="false" aria-controls="collapseFaqOne" style="color: black !important;">
+                    How can I check my current data balance?
+                </button>
+            </h2>
+            <div id="collapseFaqOne" class="accordion-collapse collapse" aria-labelledby="faqOne" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    You can view your current data balance by logging into your account and navigating to the <strong>Data Usage</strong> section.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faqTwo">
+                <button class="accordion-button collapsed text-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqTwo" aria-expanded="false" aria-controls="collapseFaqTwo" style="color: black !important;">
+                    Can I cancel my auto payment?
+                </button>
+            </h2>
+            <div id="collapseFaqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwo" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Yes, you can disable auto payments at any time by visiting the <strong>Auto Pay</strong> section and selecting <strong>Disable Auto Payment</strong>.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faqThree">
+                <button class="accordion-button collapsed text-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaqThree" aria-expanded="false" aria-controls="collapseFaqThree" style="color: black !important;">
+                    What happens if my payment fails?
+                </button>
+            </h2>
+            <div id="collapseFaqThree" class="accordion-collapse collapse" aria-labelledby="faqThree" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    If your payment is unsuccessful, you will receive a notification, and our system will automatically attempt to process the payment again within 24 hours.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+<footer class="bg-dark text-light pt-4">
+    <div class="container">
+        <div class="row">
+            <!-- Services -->
+            <div class="col-md-3">
+                <h5 class="text-danger">Our Services</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-light text-decoration-none">Mobile Recharge</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Bill Payments</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Internet Plans</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Customer Support</a></li>
+                </ul>
+            </div>
+
+            <!-- Offers & Discounts -->
+            <div class="col-md-3">
+                <h5 class="text-danger">Offers & Discounts</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-light text-decoration-none">Refer & Earn</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Seasonal Discounts</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Special Recharge Offers</a></li>
+                </ul>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-3">
+                <h5 class="text-danger">Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-light text-decoration-none">FAQs</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Terms & Conditions</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Privacy Policy</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Follow Us -->
+            <div class="col-md-3">
+                <h5 class="text-danger">Follow Us</h5>
+                <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="text-light"><i class="bi bi-linkedin"></i></a>
+            </div>
+        </div>
+
+        <!-- Copyright Section -->
+        <div class="text-center py-3 mt-3 border-top">
+            <p class="mb-0">&copy; 2025 Mobicom. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        function showContent(sectionId) {
+            let sections = document.querySelectorAll(".content");
+            sections.forEach(section => section.classList.remove("active"));
+
+            document.getElementById(sectionId).classList.add("active");
+        }
+
+        document.querySelector(".dashboard-toggle").addEventListener("click", function() {
+            let dashboard = document.getElementById("dashboard");
+            if (dashboard.style.left === "0px") {
+                dashboard.style.left = "-250px";
+            } else {
+                dashboard.style.left = "0px";
+            }
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            let ctx = document.getElementById("dataChart").getContext("2d");
+            new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ["Feb", "Mar", "Apr", "May", "Jun"],
+                    datasets: [{
+                        label: "Data Usage (GB)",
+                        data: [50, 65, 70, 60, 80],
+                        backgroundColor: "rgba(255, 99, 132, 0.5)",
+                        borderColor: "rgba(255, 99, 132, 1)",
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
