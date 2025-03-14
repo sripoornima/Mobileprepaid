@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mobicom</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="icon" href="favicon.webp">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"> 
+    <style>
+        .sidebar {
+            background: #f8f9fa;
+            padding: 15px;
+            height: 100vh;
+            border-right: 1px solid #ddd;
+        }
+        .category {
+            cursor: pointer;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .category:hover {
+            background-color: #e9ecef;
+        }
+        #plans-section {
+            display: none; 
+        }
+        .plan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            width: 100%;
+            max-width: 100%;
+            padding: 15px;
+            text-align: center;
+        }
+        #lbl{
+            display:flex;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1020;
+            width: 100%;
+
+        }
+        #backToTopBtn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: grey;
+            color: white;
+            font-size: 30px;
+            display: none; /* Initially hidden */
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 999;
+            text-align: center;
+            font-weight: bold;
+        }
+    
+        #backToTopBtn:hover {
+            background-color: #2f4156;
+        }
+        .contact-icon {
+            color: #2f4156;
+        }
+        .social-icon {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+    
+        .social-icon:hover {
+            transform: scale(1.2);
+            color: #0d6efd; /* Bootstrap primary color */
+        }
+    
+        footer {
+            border-top: 2px solid #2f4156(255, 255, 255, 0.1);
+            background-color: #2f4156;
+        }
+      
+            #services h2 {
+                color: #2f4156;
+            }
+            .service-card {
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                border: none;
+                padding: 20px;
+                border-radius: 10px;
+                transition: transform 0.3s ease-in-out;
+            }
+            .service-card i {
+                color: #5d6d7e;
+                font-size: 3rem;
+            }
+            .service-card h4 {
+                color: #2f4156;
+                margin-top: 15px;
+            }
+            .service-card:hover {
+                animation: shake 0.3s ease-in-out;
+            }
+            #services h2 {
+                color: #2f4156;
+            }
+            .service-card {
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                border: none;
+                padding: 20px;
+                border-radius: 10px;
+                transition: transform 0.3s ease-in-out;
+            }
+            .service-card i {
+                color: #5d6d7e;
+                font-size: 3rem;
+            }
+            .service-card h4 {
+                color: #2f4156;
+                margin-top: 15px;
+            }
+            .service-card:hover {
+                animation: moveUpDown 0.5s ease-in-out infinite alternate;
+            }
+            @keyframes moveUpDown {
+                0% { transform: translateY(0); }
+                100% { transform: translateY(-10px); }
+            }
+        </style>
+           
+            
+               
+            
+        
+        
+
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2f4156;">
+    <div class="container">
+        <a class="navbar-brand fs-5" href="index.html">Mobicom</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link text-white mx-2" href="#plans">Plans</a></li>
+                <li class="nav-item"><a class="nav-link text-white mx-2" href="#contact">Contact</a></li>
+                <li class="nav-item"><a class="nav-link text-white mx-2" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link text-white mx-2" href="#mobile-validation">Login</a></li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="Userlog.html" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="View Profile">
+                        <i class="bi bi-person-fill"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Header Section -->
+<header class="text-white text-center p-5" style="background-color: #2f4156;">
+    <h1>Recharge Instantly with Best Plans</h1>
+    <p class="lead">Fast, Secure, and Convenient Mobile Recharge</p>
+    <a href="quikpay.html" class="btn btn-lg" style="background-color: white; color: Black; border: none;">Quick Pay</a>
+</header>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+            new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+</script>
+
+
+<!-- Mobile Number Validation Section -->
+<section id="mobile-validation" class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="card shadow-lg w-50 p-3">
+        <h2 class="text-center mb-3" style="color: #2f4156;">Mobile Prepaid Recharge</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <form id="mobileForm">
+                    <div class="mb-3">
+                        <label id="lbl" for="mobileNumber" class="form-label fw-bold" style="color: #2f4156;">Enter Mobile Number</label>
+                        <input type="text" class="form-control border-2 rounded-3" id="mobileNumber" 
+                            placeholder="Enter your 10-digit mobile number" required>
+                        <small id="mobileError" class="text-danger d-none mt-2">Invalid mobile number! Please enter a valid 10-digit number.</small>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn w-25 rounded-3" style="background-color: #5d6d7e; color: white; border: none;" 
+                            onclick="validateLogin()">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!-- Popular Prepaid Plans Section -->
+<section id="plans" class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-center" style="color: #2f4156;">Popular Prepaid Plans</h2>
+        <a href="quikpay.html" class="btn" style="border: 2px solid #5d6d7e; color: #5d6d7e;">View All</a>
+    </div>
+
+    <div id="plansCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-inner">
+            <!-- First Slide -->
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card p-3 text-center shadow">
+                            <h4 style="color: #2f4156;">₹199 Plan</h4>
+                            <p>1.5GB/day | 28 days | Unlimited Calls</p>
+                            <a href="Payment.html" class="btn w-50" style="background-color: #5d6d7e; color: white;">Recharge Now</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card p-3 text-center shadow">
+                            <h4 style="color: #2f4156;">₹399 Plan</h4>
+                            <p>2GB/day | 56 days | Unlimited Calls</p>
+                            <a href="Payment.html" class="btn w-50" style="background-color: #5d6d7e; color: white;">Recharge Now</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card p-3 text-center shadow">
+                            <h4 style="color: #2f4156;">₹599 Plan</h4>
+                            <p>3GB/day | 84 days | Unlimited Calls</p>
+                            <a href="Payment.html" class="btn w-50" style="background-color: #5d6d7e; color: white;">Recharge Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Slide -->
+            <div class="carousel-item">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card p-3 text-center shadow">
+                            <h4 style="color: #2f4156;">₹799 Plan</h4>
+                            <p>3.5GB/day | 90 days | Unlimited Calls + OTT Subscription</p>
+                            <a href="Payment.html" class="btn w-50" style="background-color: #5d6d7e; color: white;">Recharge Now</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card p-3 text-center shadow">
+                            <h4 style="color: #2f4156;">₹999 Plan</h4>
+                            <p>4GB/day | 100 days | Unlimited Calls + Free SMS</p>
+                            <a href="Payment.html" class="btn w-50" style="background-color: #5d6d7e; color: white;">Recharge Now</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card p-3 text-center shadow">
+                            <h4 style="color: #2f4156;">₹1299 Plan</h4>
+                            <p>5GB/day | 120 days | Unlimited Calls + OTT + SMS</p>
+                            <a href="Payment.html" class="btn w-50" style="background-color: #5d6d7e; color: white;">Recharge Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#plansCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#plansCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    </div>
+</section>
+
+<!-- Bootstrap Script -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Bootstrap Script (Ensure Bootstrap is included in your project) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!--Why Choose Us?-->
+<section id="features" class="bg-light py-5">
+    <div class="container text-center">
+        <h2>Experience the Best with Us</h2>
+        <p class="lead">Fast, Secure, and Reliable Mobile Recharge</p>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <h4>Secure Payments</h4>
+                <p class="lead">Encrypted transactions for your safety</p>
+            </div>
+            <div class="col-md-4">
+                <h4>Best Offers</h4>
+                <p class="lead">Exclusive deals and discounts on recharges</p>
+            </div>
+            <div class="col-md-4">
+                <h4>24/7 Support</h4>
+                <p class="lead">Instant customer support for all issues</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Services Section -->
+<section id="services" class="bg-light py-4">
+    <div class="container text-center">
+        <h2 class="mb-4">Our Services</h2>
+        <p class="lead text-muted">Seamless mobile recharge, unbeatable plans, and secure payments — all in one place.</p>
+
+        <div class="row mt-4 justify-content-center">
+            <div class="col-md-4">
+                <div class="card service-card">
+                    <i class="bi bi-phone-fill"></i>
+                    <h4>Instant Recharge</h4>
+                    <p class="text-muted">Recharge your prepaid number in seconds with just a few clicks.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card service-card">
+                    <i class="bi bi-wifi"></i>
+                    <h4>Data & Talktime Packs</h4>
+                    <p class="text-muted">Get the best value packs for high-speed data and unlimited calls.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card service-card">
+                    <i class="bi bi-shield-lock-fill"></i>
+                    <h4>Secure Payments</h4>
+                    <p class="text-muted">Make transactions with confidence using our secure payment gateway.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<style>
+    .accordion-button:not(.collapsed) {
+        background-color: grey !important; /* Bootstrap danger color */
+        color: white !important;
+    }
+    .accordion-button:focus {
+        box-shadow: none !important;
+    }
+    #services h2, #terms-contact h2 {
+        color: #2f4156;
+    }
+    .service-box {
+        padding: 40px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        transition: transform 0.3s ease-in-out;
+    }
+    .service-box i {
+        color: #5d6d7e;
+        font-size: 3rem;
+    }
+    .service-box h4 {
+        color: #2f4156;
+        margin-top: 15px;
+    }
+    .service-box:hover {
+        transform: translateY(-10px);
+    }
+    #terms-contact {
+        background-color: #f8f9fa;
+        padding: 50px;
+    }
+</style>
+
+<section id="terms-contact" class="bg-light py-5">
+    <div class="container text-center">
+        <h2 class="fw-bold">Terms & Conditions</h2>
+        <p class="mb-3">By accessing and using our services, you agree to the following terms:</p>
+        <ul class="list-unstyled ps-3">
+            <li class="mb-3"><i class="bi bi-check-circle-fill me-2"></i>All transactions are final and non-refundable.</li>
+            <li class="mb-3"><i class="bi bi-check-circle-fill me-2"></i>Ensure accurate details during transactions. We are not responsible for incorrect entries.</li>
+            <li class="mb-3"><i class="bi bi-check-circle-fill me-2"></i>Promotions and discounts may change without prior notice.</li>
+            <li class="mb-3"><i class="bi bi-check-circle-fill me-2"></i>For support, contact our customer service team.</li>
+        </ul>
+        <hr>
+        <h2 id="contact"class="fw-bold">Get in Touch</h2>
+        <p class="lead">Need assistance? Our team is here to help!</p>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <i class="bi bi-telephone-fill fs-1"></i>
+                <p class="fs-5 fw-semibold">Customer Care</p>
+                <p class="text-muted">1800-123-4567</p>
+            </div>
+            <div class="col-md-4">
+                <i class="bi bi-envelope-fill fs-1"></i>
+                <p class="fs-5 fw-semibold">Email Support</p>
+                <p class="text-muted">support@mobicom.com</p>
+            </div>
+            <div class="col-md-4">
+                <i class="bi bi-headset fs-1"></i>
+                <p class="fs-5 fw-semibold">Helpline</p>
+                <p class="text-muted">198 (Complaints) | 199 (Queries)</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Bootstrap Script -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Bootstrap Script -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Bootstrap Script -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- Bootstrap Script -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Bootstrap Script -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<!-- Footer -->
+<footer class=" text-white text-center py-4">
+    <div class="container">
+        <p class="mb-2">&copy; 2025 Prepaid App. All Rights Reserved.</p>
+
+        <!-- Social Media Links -->
+        <div class="mt-3">
+            <p class="fs-5 fw-bold text-uppercase">Connect with Us</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="#" class="text-white fs-2 social-icon" aria-label="Facebook">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="#" class="text-white fs-2 social-icon" aria-label="Instagram">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="#" class="text-white fs-2 social-icon" aria-label="Twitter X">
+                    <i class="bi bi-twitter-x"></i>
+                </a>
+                <a href="#" class="text-white fs-2 social-icon" aria-label="LinkedIn">
+                    <i class="bi bi-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer> 
+<div onclick="scrollToTop()" id="backToTopBtn">^</div>
+<script> 
+     
+// Event handling
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("plans-section").style.display = "none"; // Hide initially
+
+    document.querySelector("#mobileForm button").addEventListener("click", function () {
+        validateLogin();
+    }); 
+});
+    
+   // JSON Data with valid mobile numbers
+   const users = [
+   { phone: "9876543210", name: "User1" },
+   { phone: "9342876736", name: "User2" },
+   { phone: "8765432109", name: "User3" },
+   { phone: "9988776655", name: "User4" },
+   { phone: "8123456789", name: "User5" }
+];
+
+
+function validateLogin() {
+    let mobileNumber = document.getElementById("mobileNumber").value.trim();
+    let errorMsg = document.getElementById("mobileError");
+
+    // Clear previous error messages
+    errorMsg.classList.add("d-none");
+
+    // 1. Check if field is empty
+    if (mobileNumber === "") {
+        errorMsg.innerText = "Mobile number is required.";
+        errorMsg.classList.remove("d-none");
+        return;
+    }
+
+    // 2. Check for 10-digit length (excluding "+")
+    let sanitizedNumber = mobileNumber.replace("+", ""); // Remove "+"
+    if (sanitizedNumber.length !== 10) {
+        errorMsg.innerText = "Mobile number must be exactly 10 digits.";
+        errorMsg.classList.remove("d-none");
+        return;
+    }
+
+    // 3. Check if number starts with 6, 8, or 9
+    if (!/^[689]\d{9}$/.test(sanitizedNumber)) {
+        errorMsg.innerText = "Mobile number must start with 6, 8, or 9.";
+        errorMsg.classList.remove("d-none");
+        return;
+    }
+   // 4. Find the user by phone number (Removing "+" from JSON numbers too)
+   let user = users.find(u => u.phone.replace("+", "").trim() === sanitizedNumber);
+
+    if (!user) {
+        errorMsg.innerText = "Mobile number not found. Please enter a valid registered number.";
+        errorMsg.classList.remove("d-none");
+        return;
+    }
+
+   
+    // 5. Store user data in localStorage
+    localStorage.setItem("selectedUser", JSON.stringify(user));
+
+    // 6. Redirect to plans.html
+    window.location.href = "plans.html";
+}
+
+
+
+// Restrict input field to numbers only and prevent alphabets/special characters
+document.addEventListener("DOMContentLoaded", function () {
+   let inputField = document.getElementById("mobileNumber");
+
+   inputField.addEventListener("keypress", function (event) {
+       let charCode = event.which ? event.which : event.keyCode;
+
+       // Allow only numeric values (0-9)
+       if (charCode < 48 || charCode > 57) {
+           event.preventDefault();
+       }
+   });
+
+   inputField.addEventListener("input", function () {
+       this.value = this.value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
+   });
+});
+
+window.onscroll = function () {
+    let backToTopBtn = document.getElementById("backToTopBtn");
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        backToTopBtn.style.display = "flex"; // Make it visible
+    } else {
+        backToTopBtn.style.display = "none"; // Hide when at the top
+    }
+};
+
+// Function to scroll back to top smoothly
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+document.addEventListener("DOMContentLoaded", function () {
+    let accordionButtons = document.querySelectorAll(".accordion button");
+    accordionButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            let parent = this.closest(".card");
+            let isOpen = this.classList.contains("active");
+            document.querySelectorAll(".accordion .card .collapse").forEach(collapse => {
+                collapse.classList.remove("show");
+            });
+            document.querySelectorAll(".accordion .btn-link").forEach(btn => {
+                btn.classList.remove("active");
+            });
+            if (!isOpen) {
+                this.classList.add("active");
+                parent.querySelector(".collapse").classList.add("show");
+            }
+        });
+    });
+});
+document.addEventListener("DOMContentLoaded", function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+});  
+
+
+
+</script> 
+</body>
+</html>

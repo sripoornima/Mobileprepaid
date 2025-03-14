@@ -1,0 +1,94 @@
+const  users = [
+    
+    {
+      "email": "johndoe@ex.com",
+      "phone": "+9876543210",
+      "address": "123 Main St, New York, USA",
+      "plan": "Unlimited Calls + 10GB Data - $20",
+      "plan_start_date": "10 Feb 2025",
+      "plan_expiry_date": "10 Mar 2025",
+      "data_usage": "70%"
+    },
+    {
+      "email": "janesmith@ex.com",
+      "phone": "+9342876736",
+      "address": "456 Park Ave, California, USA",
+      "plan": "Unlimited Calls + 20GB Data - $30",
+      "plan_start_date": "05 Feb 2025",
+      "plan_expiry_date": "05 Mar 2025",
+      "data_usage": "50%"
+    },
+    {
+      "email": "robertbrown@ex.com",
+      "phone": "+8765432109",
+      "address": "789 Elm St, Texas, USA",
+      "plan": "Unlimited Calls + 15GB Data - $25",
+      "plan_start_date": "12 Feb 2025",
+      "plan_expiry_date": "12 Mar 2025",
+      "data_usage": "60%"
+    },
+    {
+      "email": "emilywhite@ex.com",
+      "phone": "+9988776655",
+      "address": "321 Oak St, Florida, USA",
+      "plan": "Unlimited Calls + 5GB Data - $15",
+      "plan_start_date": "08 Feb 2025",
+      "plan_expiry_date": "08 Mar 2025",
+      "data_usage": "80%"
+    },
+    {
+      "email": "michaeljohnson@ex.com",
+      "phone": "+8123456789",
+      "address": "654 Pine St, Illinois, USA",
+      "plan": "Unlimited Calls + 25GB Data - $40",
+      "plan_start_date": "15 Feb 2025",
+      "plan_expiry_date": "15 Mar 2025",
+      "data_usage": "45%"
+    },
+    {
+      "email": "sarahwilson@ex.com",
+      "phone": "+9876504321",
+      "address": "987 Cedar St, Washington, USA",
+      "plan": "Unlimited Calls + 30GB Data - $50",
+      "plan_start_date": "01 Feb 2025",
+      "plan_expiry_date": "01 Mar 2025",
+      "data_usage": "90%"
+    },
+    {
+      "email": "davidmartin@ex.com",
+      "phone": "+8999887766",
+      "address": "159 Maple St, Oregon, USA",
+      "plan": "Unlimited Calls + 12GB Data - $22",
+      "plan_start_date": "09 Feb 2025",
+      "plan_expiry_date": "09 Mar 2025",
+      "data_usage": "65%"
+    },
+    {
+      "email": "laurathomas@ex.com",
+      "phone": "+9111223344",
+      "address": "753 Birch St, Nevada, USA",
+      "plan": "Unlimited Calls + 50GB Data - $60",
+      "plan_start_date": "14 Feb 2025",
+      "plan_expiry_date": "14 Mar 2025",
+      "data_usage": "30%"
+    },
+    {
+      "email": "williamanderson@ex.com",
+      "phone": "+9887766554",
+      "address": "852 Walnut St, Arizona, USA",
+      "plan": "Unlimited Calls + 8GB Data - $18",
+      "plan_start_date": "06 Feb 2025",
+      "plan_expiry_date": "06 Mar 2025",
+      "data_usage": "75%"
+    },
+    {
+      "email": "oliviabaker@ex.com",
+      "phone": "+9665544332",
+      "address": "369 Ash St, Colorado, USA",
+      "plan": "Unlimited Calls + 35GB Data - $45",
+      "plan_start_date": "11 Feb 2025",
+      "plan_expiry_date": "11 Mar 2025",
+      "data_usage": "55%"
+    }
+  ]
+  

@@ -1,0 +1,93 @@
+{
+    "Daily Data Plans": [
+      { "name": "₹239 Plan", "details": "1.5GB/day | 28 days | Unlimited Calls", "amount": 239 },
+      { "name": "₹299 Plan", "details": "2GB/day | 28 days | Unlimited Calls", "amount": 299 },
+      { "name": "₹399 Plan", "details": "3GB/day | 28 days | Unlimited Calls", "amount": 399 },
+      { "name": "₹499 Plan", "details": "2.5GB/day | 56 days | Unlimited Calls", "amount": 499 },
+      { "name": "₹599 Plan", "details": "3GB/day | 56 days | Unlimited Calls", "amount": 599 },
+      { "name": "₹699 Plan", "details": "1.5GB/day | 70 days | Unlimited Calls", "amount": 699 },
+      { "name": "₹799 Plan", "details": "2.5GB/day | 84 days | Unlimited Calls", "amount": 799 },
+      { "name": "₹899 Plan", "details": "3GB/day | 90 days | Unlimited Calls", "amount": 899 },
+      { "name": "₹999 Plan", "details": "3.5GB/day | 100 days | Unlimited Calls", "amount": 999 }
+    ],
+    "Long-Term Validity Plans": [
+      { "name": "₹666 Plan", "details": "1.5GB/day | 84 days | Unlimited Calls", "amount": 666 },
+      { "name": "₹799 Plan", "details": "2GB/day | 100 days | Unlimited Calls", "amount": 799 },
+      { "name": "₹899 Plan", "details": "2GB/day | 120 days | Unlimited Calls", "amount": 899 },
+      { "name": "₹999 Plan", "details": "2.5GB/day | 150 days | Unlimited Calls", "amount": 999 },
+      { "name": "₹1199 Plan", "details": "3GB/day | 180 days | Unlimited Calls", "amount": 1199 },
+      { "name": "₹1499 Plan", "details": "2.5GB/day | 210 days | Unlimited Calls", "amount": 1499 },
+      { "name": "₹1799 Plan", "details": "3GB/day | 240 days | Unlimited Calls", "amount": 1799 },
+      { "name": "₹1999 Plan", "details": "2GB/day | 270 days | Unlimited Calls", "amount": 1999 },
+      { "name": "₹2499 Plan", "details": "3GB/day | 365 days | Unlimited Calls", "amount": 2499 }
+    ],
+    "Unlimited Talktime Plans": [
+      { "name": "₹129 Plan", "details": "Unlimited Calls | 300 SMS | 28 days", "amount": 129 },
+      { "name": "₹149 Plan", "details": "Unlimited Calls | 400 SMS | 30 days", "amount": 149 },
+      { "name": "₹179 Plan", "details": "Unlimited Calls | 500 SMS | 30 days", "amount": 179 },
+      { "name": "₹229 Plan", "details": "Unlimited Calls | 1000 SMS | 30 days", "amount": 229 },
+      { "name": "₹299 Plan", "details": "Unlimited Calls | 1500 SMS | 56 days", "amount": 299 },
+      { "name": "₹399 Plan", "details": "Unlimited Calls | 2000 SMS | 70 days", "amount": 399 },
+      { "name": "₹499 Plan", "details": "Unlimited Calls | 2500 SMS | 84 days", "amount": 499 },
+      { "name": "₹599 Plan", "details": "Unlimited Calls | 3000 SMS | 90 days", "amount": 599 },
+      { "name": "₹699 Plan", "details": "Unlimited Calls | 3500 SMS | 100 days", "amount": 699 }
+    ],
+ 
+    "True 5G Unlimited Plans": [
+      { "name": "₹899 Plan", "details": "Unlimited 5G Data | 90 days | Unlimited Calls", "amount": 899 },
+      { "name": "₹999 Plan", "details": "Unlimited 5G Data | 100 days | Unlimited Calls", "amount": 999 },
+      { "name": "₹1199 Plan", "details": "Unlimited 5G Data | 120 days | Unlimited Calls", "amount": 1199 },
+      { "name": "₹1499 Plan", "details": "Unlimited 5G Data | 150 days | Unlimited Calls", "amount": 1499 },
+      { "name": "₹1799 Plan", "details": "Unlimited 5G Data | 180 days | Unlimited Calls", "amount": 1799 },
+      { "name": "₹2199 Plan", "details": "Unlimited 5G Data | 240 days | Unlimited Calls", "amount": 2199 },
+      { "name": "₹2699 Plan", "details": "Unlimited 5G Data | 300 days | Unlimited Calls", "amount": 2699 },
+      { "name": "₹3199 Plan", "details": "Unlimited 5G Data | 365 days | Unlimited Calls", "amount": 3199 },
+      { "name": "₹3499 Plan", "details": "Unlimited 5G Data | 365 days | Premium OTT Access", "amount": 3499 }
+    ],
+        "Data Addon Packs": [
+          { "name": "₹39 Add-on", "details": "5GB Extra Data | 1 day", "amount": 39 },
+          { "name": "₹49 Add-on", "details": "6GB Extra Data | 1 day", "amount": 49 },
+          { "name": "₹79 Add-on", "details": "8GB Extra Data | 2 days", "amount": 79 },
+          { "name": "₹99 Add-on", "details": "12GB Extra Data | 3 days", "amount": 99 },
+          { "name": "₹149 Add-on", "details": "20GB Extra Data | 7 days", "amount": 149 },
+          { "name": "₹199 Add-on", "details": "25GB Extra Data | 10 days", "amount": 199 },
+          { "name": "₹249 Add-on", "details": "30GB Extra Data | 15 days", "amount": 249 },
+          { "name": "₹349 Add-on", "details": "40GB Extra Data | 20 days", "amount": 349 },
+          { "name": "₹399 Add-on", "details": "50GB Extra Data | 30 days", "amount": 399 }
+        ],
+        "Top-up": [
+          { "name": "₹10 Top-up", "details": "Talktime ₹7.47", "amount": 10 },
+          { "name": "₹20 Top-up", "details": "Talktime ₹14.95", "amount": 20 },
+          { "name": "₹50 Top-up", "details": "Talktime ₹39.37", "amount": 50 },
+          { "name": "₹100 Top-up", "details": "Talktime ₹78.74", "amount": 100 },
+          { "name": "₹200 Top-up", "details": "Talktime ₹158.74", "amount": 200 },
+          { "name": "₹300 Top-up", "details": "Talktime ₹238.74", "amount": 300 },
+          { "name": "₹500 Top-up", "details": "Talktime ₹398.74", "amount": 500 },
+          { "name": "₹1000 Top-up", "details": "Talktime ₹798.74", "amount": 1000 },
+          { "name": "₹2000 Top-up", "details": "Talktime ₹1598.74", "amount": 2000 }
+        ],
+        "Value Packs": [
+          { "name": "₹49 Value Pack", "details": "300MB Data | 28 days", "amount": 49 },
+          { "name": "₹75 Value Pack", "details": "500MB Data | 30 days", "amount": 75 },
+          { "name": "₹99 Value Pack", "details": "1GB Data | 30 days", "amount": 99 },
+          { "name": "₹149 Value Pack", "details": "2GB Data | 45 days", "amount": 149 },
+          { "name": "₹199 Value Pack", "details": "3GB Data | 60 days", "amount": 199 },
+          { "name": "₹249 Value Pack", "details": "5GB Data | 90 days", "amount": 249 },
+          { "name": "₹499 Value Pack", "details": "10GB Data | 180 days", "amount": 499 },
+          { "name": "₹999 Value Pack", "details": "20GB Data | 365 days", "amount": 999 },
+          { "name": "₹1499 Value Pack", "details": "30GB Data | 365 days", "amount": 1499 }
+        ],
+        "Annual Packs": [
+          { "name": "₹1499 Annual", "details": "1.5GB/day | 365 days | Unlimited Calls", "amount": 1499 },
+          { "name": "₹1999 Annual", "details": "2GB/day | 365 days | Unlimited Calls", "amount": 1999 },
+          { "name": "₹2499 Annual", "details": "2.5GB/day | 365 days | Unlimited Calls", "amount": 2499 },
+          { "name": "₹2999 Annual", "details": "3GB/day | 365 days | Unlimited Calls", "amount": 2999 },
+          { "name": "₹3499 Annual", "details": "3.5GB/day | 365 days | Unlimited Calls", "amount": 3499 },
+          { "name": "₹3999 Annual", "details": "4GB/day | 365 days | Unlimited Calls", "amount": 3999 },
+          { "name": "₹4999 Annual", "details": "4.5GB/day | 365 days | Unlimited Calls", "amount": 4999 },
+          { "name": "₹5999 Annual", "details": "5GB/day | 365 days | Unlimited Calls", "amount": 5999 },
+          { "name": "₹6999 Annual", "details": "6GB/day | 365 days | Unlimited Calls", "amount": 6999 }
+        ]
+      }
+      
+  
