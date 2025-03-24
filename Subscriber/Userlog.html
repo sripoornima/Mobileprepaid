@@ -135,7 +135,7 @@
             errorMsg.style.display = "block";
             return;
         }
-
+  
         const fullNumber = "+91" + mobile;
 
         fetch(`http://localhost:9091/notify/otp?phone=${fullNumber}`, { method: "POST" })
