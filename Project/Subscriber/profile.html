@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="icon" type="image/x-icon" href="image.ico">
+
+    <style>
+        .profile-header {
+            background-color: #dc3545; /* Bootstrap Danger Color */
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+        .profile-card {
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        .btn-center {
+            display: flex;
+            justify-content: center;
+        }
+        .progress-bar {
+            background-color: #dc3545 !important;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: 800px;
+            object-fit: cover;
+        }
+        .form-card {
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        body {
+            background-color: #f8f9fa;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: auto;
+            max-height: 2000px;
+            object-fit: cover;
+        }
+        h1 {
+            margin-top: 120px; /* Adjust as needed */
+        }
+        .dashboard {
+            width: 250px;
+            background: white;
+            color: black;
+            position: fixed;
+            top: 56px;
+            left: -250px;
+            height: 100vh;
+            transition: 0.3s;
+            padding-top: 10px;
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1050;
+        }
+        .dashboard a {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            color: black;
+            border-bottom: 1px solid #ccc;
+        }
+        .dashboard a:last-child {
+            border-bottom: none;
+        }
+        .dashboard a.logout {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+        }
+        .dashboard-toggle {
+            cursor: pointer;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 24px;
+            color: white;
+            z-index: 1100;
+        }
+        .carousel {
+            margin-top: 60px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: black;
+            margin-right: 10px;
+        }
+        .logo img {
+            height: 30px;
+        }
+    </style>
+    
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-danger fixed-top">
+        <div class="container">
+            <span class="dashboard-toggle">&#9776;</span>
+            <a class="navbar-brand text-white fs-4" href="mobicom.html" >Mobicom</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-white mx-2" href="#plans">Plans</a></li>
+                    <li class="nav-item"><a class="nav-link text-white mx-2" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link text-white mx-2" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link text-white mx-2" href="#mobile-validation">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+<!-- Sidebar Dashboard -->
+<div class="dashboard" id="dashboard">
+    <a href="dashboard.html#recharge">Recharge History</a>
+    <a href="dashboard.html#email">Email</a>
+    <a href="dashboard.html#verify">Verify</a>
+    <a href="dashboard.html#autopay">Set Auto Pay</a>
+    <a href="logout.html" class="logout">Logout <i class="bi bi-power"></i></a>
+</div>
+
+
+<h1 class="text-center mt-5 py-2  display-6 text-danger">Welcome to Mobicom Instant Recharge</h1>
+
+        
+
+    <div class="container mt-3">
+        <div class="d-flex align-items-center justify-content-between">
+            <!-- Left Side - Image Carousel -->
+            <div class="w-50 me-3">
+                <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="istockphoto-1325466022-612x612.jpg" class="d-block w-100" alt="Image 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="istockphoto-1443211892-612x612.jpg" class="d-block w-100" alt="Image 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="istockphoto-1217484038-612x612.jpg" class="d-block w-100" alt="Image 3">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="istockphoto-1124235345-612x612.webp" class="d-block w-100" alt="Image 4">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="istockphoto-1336515315-612x612.webp" class="d-block w-100" alt="Image 5">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+    
+            <!-- Right Side - Mobile Prepaid Recharge Form with OTP & Profile Card -->
+            <div class="w-50 ms-3">
+                <section id="mobile-validation" class="card p-4 shadow">
+                    <p class="text-center  lead mb-4">Mobile Prepaid Recharge</p>
+                    <form id="mobileForm">
+                        <div class="mb-3">
+                            <label for="mobileNumber" class="form-label fw-lightbold">Enter Mobile Number</label>
+                            <input type="text" class="form-control" id="mobileNumber" placeholder="Enter 10-digit number" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" id="sendOTP" class="btn btn-danger">Send OTP</button>
+                        </div>
+                    </form>
+                    
+                    <!-- OTP Verification Section -->
+                    <div id="otpSection" class="row justify-content-center d-none mt-4">
+                        <div class="col-12">
+                            <div class="mb-3">
+                                <label for="otp" class="form-label fw-bold">Enter OTP</label>
+                                <input type="text" class="form-control" id="otp" placeholder="Enter OTP" required>
+                            </div>
+                            <div class="text-center">
+                                <button type="button" id="verifyOTP" class="btn btn-danger">Verify OTP</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Profile Card (Initially Hidden) -->
+                    <div id="userProfile" class="d-none card profile-card mt-4 p-3 border-0 shadow-lg">
+                        <div class=" card profile-header text-center bg-danger text-white p-3 ">
+                            <h4>Ebin Mathew</h4>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Date of Birth:</strong> <span id="dob">01-01-1995</span></p>
+                            <p><strong>Registered Mobile:</strong> <span id="userPhone">+91 9876543210</span></p>
+                            <p><strong>Alternate Contact:</strong> <span id="altPhone">+91 9123456789</span></p>
+                            <p><strong>Email:</strong> <span id="userEmail">ebin.mathew@email.com</span></p>
+                            <p><strong>Communication Language:</strong> <span id="commLang">English</span></p>
+                            <p><strong>GST Registration:</strong> <span id="gstReg">GSTIN123456789</span></p>
+                            <p><strong>Plan Expiry:</strong> <span id="expiryDate">2025-12-31</span></p>
+                            <p><strong>Data Usage:</strong></p>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                    7GB / 10GB Used
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+   <!-- FAQ Section -->
+<section id="faq" class="container my-5">
+    <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+    <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed text-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="color: black !important;">
+                    How do I recharge my mobile number?
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    You can recharge by selecting your plan, entering your number, and making a secure payment.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed text-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color: black  !important;">
+                    What payment methods do you accept?
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    We accept UPI, credit/debit cards, and digital wallets.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed text-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="color: black  !important;">
+                    How can I check my transaction history?
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    You can check your transaction history in the "My Account" section after logging in.
+                </div>
+            </div>`
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed text-danger" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style="color: black !important;">
+                    How do I contact customer support?
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    You can contact our customer support via email or call our helpline number available on the website.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    
+    <footer class="bg-dark text-light pt-4">
+        <div class="container">
+            <div class="row">
+                <!-- Services -->
+                <div class="col-md-3">
+                    <h5 class="text-danger">Our Services</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Mobile Recharge</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Bill Payments</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Internet Plans</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Customer Support</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Offers & Discounts -->
+                <div class="col-md-3">
+                    <h5 class="text-danger">Offers & Discounts</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Refer & Earn</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Seasonal Discounts</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Special Recharge Offers</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Quick Links -->
+                <div class="col-md-3">
+                    <h5 class="text-danger">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">FAQs</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Terms & Conditions</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Contact Us</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Follow Us -->
+                <div class="col-md-3">
+                    <h5 class="text-danger">Follow Us</h5>
+                    <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="text-light"><i class="bi bi-linkedin"></i></a>
+                </div>
+            </div>
+    
+            <!-- Copyright Section -->
+            <div class="text-center py-3 mt-3 border-top">
+                <p class="mb-0">&copy; 2025 Mobicom. All Rights Reserved.</p>
+            </div>
+        </div>
+        
+        
+        <div onclick="scrollToTop()" id="backToTopBtn">^</div>
+
+    </footer>
+    
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    
+  
+
+<!-- OTP Validation Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("sendOTP").addEventListener("click", function () {
+            let mobile = document.getElementById("mobileNumber").value;
+            if (/^\d{10}$/.test(mobile)) {
+                alert("OTP Sent Successfully!");
+                document.getElementById("otpSection").classList.remove("d-none"); // Show OTP input
+            } else {
+                alert("Please enter a valid 10-digit mobile number.");
+            }
+        });
+
+        document.getElementById("verifyOTP").addEventListener("click", function () {
+            let otp = document.getElementById("otp").value.trim();
+            let otpSection = document.getElementById("otpSection");
+            let userProfile = document.getElementById("userProfile");
+
+            if (/^\d{4,6}$/.test(otp)) {
+                alert("OTP Verified Successfully!");
+
+                // Hide OTP Section
+                otpSection.classList.add("d-none");
+
+                // Show Profile Card
+                userProfile.classList.remove("d-none");
+                userProfile.style.display = "block"; // Ensure it's visible
+                userProfile.style.opacity = "1"; // Make sure it's fully visible
+            } else {
+                alert("Invalid OTP. Please try again.");
+            }
+        });
+    });
+
+    document.querySelector(".dashboard-toggle").addEventListener("click", function() {
+        let dashboard = document.getElementById("dashboard");
+        if (dashboard.style.left === "0px") {
+            dashboard.style.left = "-250px";
+        } else {
+            dashboard.style.left = "0px";
+        }
+    });
+    window.onscroll = function () {
+        let backToTopBtn = document.getElementById("backToTopBtn");
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            backToTopBtn.style.display = "flex"; // Make it visible
+        } else {
+            backToTopBtn.style.display = "none"; // Hide when at the top
+        }
+    };
+    // Function to scroll back to top smoothly
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+</script>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mobicom</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="icon" href="favicon.webp">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"> <!--for icon-->
+    <style>
+        .sidebar {
+            background: #f8f9fa;
+            padding: 15px;
+            height: 100vh;
+            border-right: 1px solid #ddd;
+        }
+        .category {
+            cursor: pointer;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .category:hover {
+            background-color: #e9ecef;
+        }
+        #plans-section {
+            display: none; /* Initially hidden */
+        }
+        .plan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            width: 100%;
+            max-width: 100%;
+            padding: 15px;
+            text-align: center;
+        }
+        #lbl{
+            display:flex;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1020;
+            width: 100%;
+        }
+        .btn-custom {
+            background-color: #34495e;
+            border-color: #34495e;
+            color: white;
+        }
+        
+        .btn-custom:hover {
+            background-color: #2c3e50; /* Slightly darker shade on hover */
+            border-color: #2c3e50;
+        }
+        #plans-section{
+            height:auto;
+
+        }
+        
+    </style>
+</head>
+<body>
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #34495e;">
+    <div class="container">
+        <a class="navbar-brand fs-5" href="index.html">Mobicom</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link text-white mx-2" href="#plans">Plans</a></li>
+                <li class="nav-item"><a class="nav-link text-white mx-2" href="#contact">Contact</a></li>
+                <li class="nav-item"><a class="nav-link text-white mx-2" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link text-white mx-2" href="#mobile-validation">Login</a></li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="profile.html" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                        title="View Profile">
+                        <i class="bi bi-person-fill"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br>
+<div class="container">
+        <p><strong>Phone:</strong> <span id="userPhone"></span></p>
+</div>
+
+   
+    
+ 
+<!--Plans-->
+<div id="plans-section">
+    <div class="row mt-4 ">
+        <div class="col-md-2 ms-5 sidebar">
+            <h5 class="text-center">Packs & Top-ups</h5>
+            <div id="categories">
+                <div class="category w-100" data-category="Daily Data Plans">Daily Data Plans</div>
+                <div class="category w-100" data-category="Long-Term Validity Plans">Long-Term Validity Plans</div>
+                <div class="category w-100" data-category="Unlimited Talktime Plans">Unlimited Talktime Plans</div>
+                <div class="category w-100" data-category="True 5G Unlimited Plans">True 5G Unlimited Plans</div>
+                <div class="category w-100" data-category="Data Addon Packs">Data Addon Packs</div>
+                <div class="category w-100" data-category="Top-up">Top-up</div>
+                <div class="category w-100" data-category="Value Packs">Value Packs</div>
+                <div class="category w-100" data-category="Annual Packs">Annual Packs</div>
+            </div>
+        </div>       
+        <div class="col-md-9">
+            <h2 id="plan-category-title" class="text-center mb-4">Popular Plans</h2>
+            <div id="plan-container" class="plan-grid gap-3">
+                <!-- Plans will load dynamically here -->
+            </div>
+        
+        </div>
+    </div>
+</div>
+</div>
+
+
+</section>
+
+
+<<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("plans-section").style.display = "block"; // Show the plans section
+        fetchPlansData(); // Fetch plans from JSON
+    });
+
+    let plans = {}; // Empty object to store fetched plans
+
+    function fetchPlansData() {
+        fetch("plans.json") // Fetch plans from external JSON file
+            .then(response => response.json())
+            .then(data => {
+                plans = data;
+                displayRandomPlans(); // Load default plans
+            })
+            .catch(error => console.error("Error fetching plans:", error));
+    }
+
+    function displayRandomPlans() {
+        const planContainer = document.getElementById("plan-container");
+        planContainer.innerHTML = ''; // Clear previous content
+        let allPlans = [];
+
+        for (let category in plans) {
+            const randomPlan = plans[category][Math.floor(Math.random() * plans[category].length)];
+            allPlans.push(randomPlan);
+        }
+
+        allPlans.forEach(plan => {
+            let planCard = `
+                <div class="card my-2 mx-2 py-3 px-2 text-center">
+                    <h4>${plan.name}</h4>
+                    <p>${plan.details}</p>
+                    <div class="text-center">
+                        <button class="btn btn-custom w-50" onclick="selectPlan(${plan.amount}, '${plan.name}')">Recharge Now</button>
+                    </div>
+                </div>
+            `;
+            planContainer.innerHTML += planCard;
+        });
+    }
+
+    document.querySelectorAll(".category").forEach(categoryElement => {
+        categoryElement.addEventListener("click", function () {
+            const categoryName = this.dataset.category;
+            document.getElementById("plan-category-title").innerText = categoryName;
+            displayPlansForCategory(categoryName);
+        });
+    });
+
+    function displayPlansForCategory(categoryName) {
+        const planContainer = document.getElementById("plan-container");
+        planContainer.innerHTML = '';
+
+        if (plans[categoryName]) {
+            plans[categoryName].forEach(plan => {
+                let planCard = `
+                    <div class="card my-2 mx-2 py-3 px-2 text-center">
+                        <h4>${plan.name}</h4>
+                        <p>${plan.details}</p>
+            <button class="btn btn-custom w-50" onclick="selectPlan(${plan.amount}, '${plan.name}')"> Recharge Now</button>    
+                    </div>
+                `;
+                planContainer.innerHTML += planCard;
+            });
+        }
+    }
+
+    function selectPlan(amount, planName) {
+        let tax = Math.round(amount * 0.05);
+        let totalPayable = amount + tax;
+
+        localStorage.setItem("selectedPlan", JSON.stringify({
+            planName: planName,
+            baseAmount: amount,
+            tax: tax,
+            totalPayable: totalPayable
+        }));
+
+        window.location.href = "Payment.html";
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+        let user = JSON.parse(localStorage.getItem("selectedUser"));
+    
+        if (!user) {
+            document.getElementById("planDetails").innerHTML = "<p class='text-danger'>No user data found. Please go back and enter a valid mobile number.</p>";
+            return;
+        }
+    
+        // Display user details
+        document.getElementById("userPhone").innerText = user.phone;
+        
+    });
+    
+</script>
+
+</body>
+</html>
