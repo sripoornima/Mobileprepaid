@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Plan & Category Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: 0.3s ease;
+        }
+
+        .sidebar ul li a:hover {
+            background: #34495e;
+        }
+
+        .content {
+            padding: 30px;
+            flex-grow: 1;
+        }
+
+        .section-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .modal-header {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+        .btn-primary, .btn-success {
+            min-width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li><a href="Dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="Plans.html"><i class="fas fa-list"></i> Plan Management</a></li>
+            <li><a href="users.html"><i class="fas fa-users"></i> Users Management</a></li>
+            <li><a href="Transaction.html"><i class="fas fa-receipt"></i> Transaction History</a></li>
+            <li><a href="adlog.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+
+        <!-- Category Management Section -->
+        <div class="section-box mt-0">
+            <!-- Add Category Form -->
+            <form id="addCategoryForm" class="row g-0 mb-3">
+                <div class="col-md-6">
+                    <input type="text" class="form-control w-75" id="categoryName" placeholder="Enter Category Name" required>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary">Add Category</button>
+                </div>
+            </form>
+
+     
+        <!-- Plan Management Section -->
+        <div class="section-box">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Plan Management</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#planModal">+ Add Plan</button>
+            </div>
+
+            <!-- Plan Table -->
+            <div class="table-container">
+                <table id="planTable" class="display table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Plan Name</th>
+                            <th>Price</th>
+                            <th>Validity</th>
+                            <th>Category</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Add/Edit Plan -->
+    <div class="modal fade" id="planModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Plan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editIndex">
+                    <label>Plan Name:</label>
+                    <input type="text" id="planName" class="form-control mb-2" required>
+                    <label>Price:</label>
+                    <input type="number" id="planPrice" class="form-control mb-2" min="0" required>
+                    <label>Validity (in days):</label>
+                    <input type="number" id="planValidity" class="form-control mb-2" min="1" required>
+                    <label>Category:</label>
+                    <select id="planCategory" class="form-control mb-2" required>
+                        <option value="">Select Category</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" id="savePlan">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Success Modal -->
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="background: linear-gradient(90deg, #000c1f, #001a33, #002244); color: #ffffff;">
+        <div class="modal-header border-0">
+          <h5 class="modal-title" id="categoryModalLabel">Success</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Category Added Successfully!
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn" style="background: linear-gradient(90deg, #000c1f, #001a33, #002244); color: #ffffff;" data-bs-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+  
+  <!-- Error Modal -->
+  <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="errorModalLabel">Error</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Error adding category.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Try Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Combined Script -->
+    <script>
+        $(document).ready(function () {
+            let editingId = null;
+
+            function fetchCategories() {
+                $.ajax({
+                    url: "http://localhost:9091/categories",
+                    method: "GET",
+                    success: function (data) {
+                        $('#categoryTableBody').empty();
+                        $("#planCategory").empty().append('<option value="">Select Category</option>');
+                        data.forEach(category => {
+                            $('#categoryTableBody').append(`
+                                <tr>
+                                    <td>${category.id}</td>
+                                    <td>${category.categoryName}</td>
+                                </tr>
+                            `);
+                            $("#planCategory").append(`<option value="${category.id}">${category.categoryName}</option>`);
+                        });
+                    },
+                    error: function () {
+                        alert("Error fetching categories");
+                    }
+                });
+            }
+            $('#addCategoryForm').submit(function (e) {
+                e.preventDefault();
+                const categoryName = $('#categoryName').val();
+                $.ajax({
+                    url: "http://localhost:9091/categories",
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ categoryName }),
+                    success: function () {
+                        $('#categoryName').val('');
+                        fetchCategories();
+                        $('#categoryModal').modal('show');
+                    },
+                    error: function () {
+                        $('#errorModal').modal('show');
+                    }
+                });
+            });
+            
+
+            function loadPlans() {
+                $.ajax({
+                    url: "http://localhost:9091/api/Plans",
+                    method: "GET",
+                    success: function (data) {
+                        renderTable(data);
+                    },
+                    error: function () {
+                        alert("Failed to load plans.");
+                    }
+                });
+            }
+
+            function renderTable(plans) {
+                if ($.fn.DataTable.isDataTable("#planTable")) {
+                    $("#planTable").DataTable().destroy();
+                }
+                let tableBody = $("#planTable tbody");
+                tableBody.empty();
+                plans.forEach((plan) => {
+                    tableBody.append(`
+                        <tr>
+                            <td>${plan.name}</td>
+                            <td>₹${plan.price}</td>
+                            <td>${plan.validity} days</td>
+                            <td>${plan.category?.categoryName || 'N/A'}</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm edit" data-id="${plan.id}">Edit</button>
+                                <button class="btn btn-danger btn-sm delete" data-id="${plan.id}">Delete</button>
+                            </td>
+                        </tr>
+                    `);
+                });
+                $("#planTable").DataTable();
+                $(".edit").off().click(editPlan);
+                $(".delete").off().click(deletePlan);
+            }
+
+            function editPlan() {
+                let id = $(this).data("id");
+                $.get(`http://localhost:9091/api/Plans/${id}`, function (plan) {
+                    $("#planName").val(plan.name);
+                    $("#planPrice").val(plan.price);
+                    $("#planValidity").val(plan.validity);
+                    $("#planCategory").val(plan.category?.id || "");
+                    editingId = plan.id;
+                    $("#planModal").modal("show");
+                });
+            }
+
+            function deletePlan() {
+                let id = $(this).data("id");
+                $.ajax({
+                    url: `http://localhost:9091/api/Plans/${id}`,
+                    method: "DELETE",
+                    success: function () {
+                        loadPlans();
+                    },
+                    error: function () {
+                        alert("Delete failed.");
+                    }
+                });
+            }
+
+            $("#savePlan").click(function () {
+                let plan = {
+                    name: $("#planName").val(),
+                    price: $("#planPrice").val(),
+                    validity: $("#planValidity").val(),
+                    category: { id: $("#planCategory").val() }
+                };
+                if (editingId) {
+                    $.ajax({
+                        url: `http://localhost:9091/api/Plans/${editingId}`,
+                        method: "PUT",
+                        contentType: "application/json",
+                        data: JSON.stringify(plan),
+                        success: function () {
+                            loadPlans();
+                            resetModal();
+                        }
+                    });
+                } else {
+                    $.ajax({
+                        url: "http://localhost:9091/api/Plans",
+                        method: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(plan),
+                        success: function () {
+                            loadPlans();
+                            resetModal();
+                        }
+                    });
+                }
+            });
+
+            function resetModal() {
+                $("#planModal").modal("hide");
+                $("#planName, #planPrice, #planValidity, #planCategory").val("");
+                editingId = null;
+            }
+
+            // Initial Load
+            fetchCategories();
+            loadPlans();
+        });
+    </script>
+
+</body>
+
+</html>

@@ -13,7 +13,454 @@
             padding: 15px;
             height: 100vh;
             border-right: 1px solid #ddd;
-        }
+        }<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Mobicom</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+            <link rel="icon" href="favicon.webp">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"> <!--for icon-->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        
+            <script src="https://kit.fontawesome.com/yourkitcode.js" crossorigin="anonymous"></script>
+        
+            <style>
+                .sidebar {
+                    background: rgba(255, 255, 255, 0.2);
+                    padding: 25px;
+                    height: 100vh; /* Full height */
+                    border-right: 2px solid rgba(255, 255, 255, 0.2);
+                    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    border-radius: 12px 0 0 12px;
+                    backdrop-filter: blur(10px);
+                    
+                    overflow-y: auto; /* Enables scrolling */
+                    scrollbar-width: thin; /* For Firefox */
+                    scrollbar-color: #2c3e50 #ffffff; /* Scrollbar color */
+                }
+                
+                /* For WebKit-based browsers (Chrome, Edge, Safari) */
+                .sidebar::-webkit-scrollbar {
+                    width: 8px;
+                }
+                
+                .sidebar::-webkit-scrollbar-thumb {
+                    background: #2c3e50;
+                    border-radius: 10px;
+                }
+                
+                .sidebar::-webkit-scrollbar-track {
+                    background: rgba(255, 255, 255, 0.3);
+                }
+                
+                /* Sidebar Category Styling */
+                .category {
+                    cursor: pointer;
+                    padding: 12px 20px;
+                    border-radius: 10px;
+                    margin-bottom: 10px;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    color: #2c3e50;
+                    background: rgba(255, 255, 255, 0.3);
+                    backdrop-filter: blur(8px);
+                    transition: all 0.3s ease-in-out;
+                    display: flex;
+                    align-items: center;
+                    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                }
+                
+                .category:hover {
+                    background: #2c3e50;
+                    color: #ffffff;
+                    transform: translateX(5px);
+                    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2);
+                }
+                
+                
+              
+                
+                #plans-section {
+                    display: none; /* Initially hidden */
+                    max-height: fit-content;
+                }
+                .plan-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                    gap: 20px;
+                }
+                .card {
+                    width: 100%;
+                    max-width: 100%;
+                    padding: 15px;
+                    text-align: center;
+                }
+                #lbl{
+                    display:flex;
+                }
+                body {
+                    margin: 0;
+                    padding: 0;
+                }
+                .navbar {
+                    position: sticky;
+                    top: 0;
+                    z-index: 1020;
+                    width: 100%;
+                }
+                .btn-custom {
+                    background-color: #34495e;
+                    border-color: #34495e;
+                    color: white;
+                }
+                
+                .btn-custom:hover {
+                    background-color: #2c3e50; /* Slightly darker shade on hover */
+                    border-color: #2c3e50;
+                }
+                footer {
+                    background: #2c3e50;
+                    color: #ffffff;
+                    padding: 40px 20px;
+                    font-size: 14px;
+                    text-align: center;
+                }
+                
+                .footer-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    max-width: 1100px;
+                    margin: auto;
+                    text-align: left;
+                }
+                
+                .footer-section {
+                    flex: 1;
+                    min-width: 200px;
+                    padding: 10px;
+                }
+                
+                .footer-section h3 {
+                    font-size: 18px;
+                    margin-bottom: 15px;
+                    border-bottom: 2px solid #ffffff;
+                    display: inline-block;
+                    padding-bottom: 5px;
+                }
+                
+                .footer-section ul {
+                    list-style: none;
+                    padding: 0;
+                }
+                
+                .footer-section ul li {
+                    margin-bottom: 10px;
+                }
+                
+                .footer-section ul li a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+                }
+                
+                .footer-section ul li a:hover {
+                    color: #f39c12;
+                }
+                
+                .footer-section.social {
+                    text-align: center;
+                }
+                
+                .footer-section.social a {
+                    color: #ffffff;
+                    font-size: 20px;
+                    margin: 0 10px;
+                    display: inline-block;
+                    transition: transform 0.3s ease;
+                }
+                
+                .footer-section.social a:hover {
+                    transform: scale(1.2);
+                    color: #f39c12;
+                }
+                
+                .footer-bottom {
+                    margin-top: 20px;
+                    border-top: 1px solid rgba(255, 255, 255, 0.2);
+                    padding-top: 10px;
+                    font-size: 13px;
+                }
+                
+                .floating-help-btn {
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    background-color: #2c3e50;
+                    color: white;
+                    padding: 10px 15px;
+                    border-radius: 50px;
+                    text-decoration: none;
+                    font-size: 16px;
+                    box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+                }
+                .floating-help-btn:hover {
+                    background-color: #1a252f;
+                }
+                
+            </style>
+        </head>
+        <body>
+         <!-- Navbar -->
+         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #34495e;">
+            <div class="container">
+                <a class="navbar-brand fs-5" href="index.html">Mobicom</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link text-white mx-2" href="#plans">Plans</a></li>
+                        <li class="nav-item"><a class="nav-link text-white mx-2" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link text-white mx-2" href="#services">Services</a></li>
+                        <li class="nav-item"><a class="nav-link text-white mx-2" href="#mobile-validation">Login</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="profile.html" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                title="View Profile">
+                                <i class="bi bi-person-fill"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <br>
+        <div class="container d-flex justify-content-between align-items-center">
+            <p><strong>Phone:</strong> <span id="userPhone"></span></p>
+            <div class="d-flex gap-4">
+                <input type="text" id="searchBar" class="form-control" placeholder="Search plans...">
+                <select id="filterPrice" class="form-select w-auto">
+                    <option value="">Filter by Price</option>
+                    <option value="low">Low to High</option>
+                    <option value="high">High to Low</option>
+                </select>
+            </div>
+        
+        </div>
+        
+        <!--Plans-->
+        <div id="plans-section" class="height-50">
+            <div class="row mt-4">
+                <div class="col-md-2 ms-5 sidebar">
+                    <h5 class="text-center">Packs & Top-ups</h5>
+                    <div id="categories">
+                        <div class="category w-100" data-category="Daily Data Plans">Daily Data Plans</div>
+                        <div class="category w-100" data-category="Long-Term Validity Plans">Long-Term Validity Plans</div>
+                        <div class="category w-100" data-category="Unlimited Talktime Plans">Unlimited Talktime Plans</div>
+                        <div class="category w-100" data-category="Data Addon Packs">Data Addon Packs</div>
+                        <div class="category w-100" data-category="Top-up">Top-up</div>
+                        <div class="category w-100" data-category="Value Packs">Value Packs</div>
+                        <div class="category w-100" data-category="Annual Packs">Annual Packs</div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+            <h2 id="plan-category-title" class="text-center mb-3">Popular Plans</h2>
+            <div id="plan-container" class="plan-grid gap-3">
+                <!-- Plans will load dynamically here -->
+            </div>
+        </div>
+            </div>
+        </div>
+        <br>
+        <footer>
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Mobicom</h3>
+                    <p>Stay connected with the best mobile plans.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Care</h3>
+                    <p>Email: support@mobicom.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                </div>
+                <div class="footer-section social">
+                    <h3>Follow Us</h3><br>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Mobicom. All rights reserved.</p>
+            </div>
+        </footer>
+        
+        
+        </section>
+        
+        <a href="support.html" class="floating-help-btn">
+            <i class="bi bi-question-circle-fill"></i> Help
+        </a>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                document.getElementById("plans-section").style.display = "block"; // Show the plans section
+                fetchPlansData(); // Fetch plans from JSON
+            });
+        
+            let plans = {}; // Empty object to store fetched plans
+        
+            function fetchPlansData() {
+                fetch("plans.json") // Fetch plans from external JSON file
+                    .then(response => response.json())
+                    .then(data => {
+                        plans = data;
+                        displayRandomPlans(); // Load default plans
+                    })
+                    .catch(error => console.error("Error fetching plans:", error));
+            }
+        
+            function displayRandomPlans() {
+                const planContainer = document.getElementById("plan-container");
+                planContainer.innerHTML = ''; // Clear previous content
+                let allPlans = [];
+        
+                for (let category in plans) {
+                    const randomPlan = plans[category][Math.floor(Math.random() * plans[category].length)];
+                    allPlans.push(randomPlan);
+                }
+        
+                allPlans.forEach(plan => {
+                    let planCard = `
+                        <div class="card my-2 mx-2 py-3 px-2 text-center">
+                            <h4>${plan.name}</h4>
+                            <p>${plan.details}</p>
+                            <div class="text-center">
+                                <button class="btn btn-custom w-50" onclick="selectPlan(${plan.amount}, '${plan.name}')">Recharge Now</button>
+                            </div>
+                        </div>
+                    `;
+                    planContainer.innerHTML += planCard;
+                });
+            }
+        
+            document.querySelectorAll(".category").forEach(categoryElement => {
+                categoryElement.addEventListener("click", function () {
+                    const categoryName = this.dataset.category;
+                    document.getElementById("plan-category-title").innerText = categoryName;
+                    displayPlansForCategory(categoryName);
+                });
+            });
+        
+            function displayPlansForCategory(categoryName) {
+                const planContainer = document.getElementById("plan-container");
+                planContainer.innerHTML = '';
+        
+                if (plans[categoryName]) {
+                    plans[categoryName].forEach(plan => {
+                        let planCard = `
+                            <div class="card my-2 mx-2 py-3 px-2 text-center">
+                                <h4>${plan.name}</h4>
+                                <p>${plan.details}</p>
+                    <button class="btn btn-custom w-50" onclick="selectPlan(${plan.amount}, '${plan.name}')"> Recharge Now</button>    
+                            </div>
+                        `;
+                        planContainer.innerHTML += planCard;
+                    });
+                }
+            }
+        
+            function selectPlan(amount, planName) {
+                let tax = Math.round(amount * 0.05);
+                let totalPayable = amount + tax;
+        
+                localStorage.setItem("selectedPlan", JSON.stringify({
+                    planName: planName,
+                    baseAmount: amount,
+                    tax: tax,
+                    totalPayable: totalPayable
+                }));
+        
+                window.location.href = "Payment.html";
+            }
+            document.addEventListener("DOMContentLoaded", function() {
+                let user = JSON.parse(localStorage.getItem("selectedUser"));
+            
+                if (!user) {
+                    document.getElementById("planDetails").innerHTML = "<p class='text-danger'>No user data found. Please go back and enter a valid mobile number.</p>";
+                    return;
+                }
+            
+                // Display user details
+                document.getElementById("userPhone").innerText = user.phone;
+                
+            });
+            document.getElementById("filterPrice").addEventListener("change", function () {
+                let order = this.value;
+                let planCards = [...document.querySelectorAll("#plan-container .card")];
+                planCards.sort((a, b) => {
+                    let priceA = parseInt(a.querySelector("button").getAttribute("onclick").match(/\d+/)[0]);
+                    let priceB = parseInt(b.querySelector("button").getAttribute("onclick").match(/\d+/)[0]);
+                    return order === "low" ? priceA - priceB : priceB - priceA;
+                });
+                document.getElementById("plan-container").innerHTML = "";
+                planCards.forEach(card => document.getElementById("plan-container").appendChild(card));
+            });
+            document.getElementById("searchBar").addEventListener("input", function () {
+                let keyword = this.value.toLowerCase();
+                document.querySelectorAll("#plan-container .card").forEach(card => {
+                    card.style.display = card.innerText.toLowerCase().includes(keyword) ? "block" : "none";
+                });
+            });
+            document.getElementById("searchBar").addEventListener("input", function () {
+                let keyword = this.value.toLowerCase().trim();
+                let isNumber = !isNaN(keyword) && keyword !== "";
+            
+                document.querySelectorAll("#plan-container .card").forEach(card => {
+                    let planText = card.innerText.toLowerCase();
+                    let planPriceMatch = card.querySelector("button").getAttribute("onclick").match(/\d+/);
+                    let planPrice = planPriceMatch ? parseInt(planPriceMatch[0]) : null;
+            
+                    if (isNumber) {
+                        card.style.display = planPrice == parseInt(keyword) ? "block" : "none";
+                    } else {
+                        card.style.display = planText.includes(keyword) ? "block" : "none";
+                    }
+                });
+            });
+            // Get elements
+        const helpBtn = document.getElementById("helpBtn");
+        const helpModal = document.getElementById("helpModal");
+        const closeBtn = document.getElementById("closeBtn");
+        
+        // Show modal on click
+        helpBtn.onclick = function() {
+            helpModal.style.display = "block";
+        };
+        
+        // Close modal on click
+        closeBtn.onclick = function() {
+            helpModal.style.display = "none";
+        };
+        
+        // Close modal if user clicks outside the modal
+        window.onclick = function(event) {
+            if (event.target === helpModal) {
+                helpModal.style.display = "none";
+            }
+        };
+        
+            
+        </script>
+        
+        </body>
+        </html>
         .category {
             cursor: pointer;
             padding: 10px;
@@ -148,22 +595,12 @@
 
 
 <script> 
-    // Ensure the plans section is visible on page load
-    document.addEventListener("DOMContentLoaded", function () {
-        document.getElementById("plans-section").style.display = "block"; // Show the plans section
-        displayRandomPlans(); // Load default plans
-    });
-    localStorage.setItem("users", JSON.stringify([
-    { phone: "9876543210", name: "User1" },
-    { phone: "9342876736", name: "User2" },
-    { phone: "8765432109", name: "User3" },
-    { phone: "9988776655", name: "User4" },
-    { phone: "8123456789", name: "User5" }
-]));
-console.log("Users saved to localStorage!");
 
 
-    const plans = {
+
+
+
+    const plan= {
         "Daily Data Plans": [
             { name: "₹239 Plan", details: "1.5GB/day | 28 days | Unlimited Calls", amount: 239 },
             { name: "₹299 Plan", details: "2GB/day | 28 days | Unlimited Calls", amount: 299 },

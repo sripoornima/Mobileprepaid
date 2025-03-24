@@ -1,0 +1,27 @@
+<form id="addPlanForm">
+    <input type="text" placeholder="Plan Name" required />
+    <input type="number" placeholder="Price" required />
+    <input type="number" placeholder="Validity (days)" required />
+    
+    <!-- Here's your dropdown -->
+    <select id="categoryDropdown" required>
+        <option value="">Select Category</option>
+        <!-- dynamically load options here -->
+    </select>
+
+    <button type="submit">Add Plan</button>
+</form>
+<script>
+    function addCategory() {
+        let categoryName = document.getElementById('categoryName').value;
+        if(categoryName.trim() !== ""){
+            let dropdown = document.getElementById('categoryDropdown');
+            let option = document.createElement('option');
+            option.value = categoryName;
+            option.text = categoryName;
+            dropdown.appendChild(option);
+            document.getElementById('categoryName').value = "";
+        }
+    }
+    
+</script>

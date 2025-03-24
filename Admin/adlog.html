@@ -102,90 +102,53 @@
             
 
 
-    <script>
-       /* // Sample JSON data for valid users
-        const users = [
-            { "email": "user1@example.com", "password": "password123" },
-            { "email": "admin@example.com", "password": "admin@123" }
-        ];
-    
-        function validateLogin() {
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value.trim();
-            const errorMsg = document.getElementById("error-msg");
-    
-            // Clear previous errors
-            errorMsg.innerHTML = "";
-    
-            // Empty field validation
-            if (email === "" || password === "") {
-                errorMsg.innerHTML = "Both fields are required.";
-                return;
-            }
-    
-            // Check if the email and password match the JSON data
-            const validUser = users.find(user => user.email === email && user.password === password);
-    
-            if (validUser) {
-                // Redirect to ad.html on successful login
-                window.location.href = "Dashboard.html";
-            } else {
-                errorMsg.innerHTML = "Invalid email or password.";
-            }
-        }*/
-        
-    
-        
-        async function validateLogin() {
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value.trim();
-            const errorMsg = document.getElementById("error-msg");
-        
-            errorMsg.innerHTML = "";
-        
-            if (email === "" || password === "") {
-                errorMsg.innerHTML = "Both fields are required.";
-                return;
-            }
-        
-            try {
-                const response = await fetch("http://localhost:9091/api/admin/login", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        username: email,
-                        password: password
-                    }),
-                    mode: "cors"  // Ensure CORS is handled
-                });
-        
-                if (response.status === 401) {  // Unauthorized
-                    errorMsg.innerHTML = "Invalid email or password.";
-                    return;
+       
+            <script>
+                async function validateLogin() {
+                    const email = document.getElementById("email").value.trim();
+                    const password = document.getElementById("password").value.trim();
+                    const errorMsg = document.getElementById("error-msg");
+            
+                    errorMsg.innerHTML = "";
+            
+                    if (email === "" || password === "") {
+                        errorMsg.innerHTML = "Both fields are required.";
+                        return;
+                    }
+            
+                    try {
+                        const response = await fetch("http://localhost:9091/api/admin/login", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded"
+                            },
+                            body: `username=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
+                            credentials: "include", // For JSESSIONID cookie
+                            mode: "cors"
+                        });
+            
+                        if (response.status === 401) {
+                            errorMsg.innerHTML = "Invalid email or password.";
+                            return;
+                        }
+            
+                        if (!response.ok) {
+                            throw new Error("Server error.");
+                        }
+            
+                        //If Spring Security authenticates, session will be created
+                        window.location.href = "Dashboard.html"; 
+                        // or secured URL like /dashboard if routing through backend
+            
+                    } catch (error) {
+                        errorMsg.innerHTML = "Server error. Try again later.";
+                        console.error(error);
+                    }
                 }
+            </script>
+            
         
-                if (!response.ok) {  // Catch any other errors
-                    throw new Error("Server error.");
-                }
         
-                const isValid = await response.json();
-        
-                if (isValid) {
-                    window.location.href = "Dashboard.html";
-                } else {
-                    errorMsg.innerHTML = "Invalid email or password.";
-                }
-            } catch (error) {
-                errorMsg.innerHTML = "Server error. Try again later.";
-                console.error(error);
-            }
-        }
-
-
-        
-    </script>
     
 </body>
 </html>

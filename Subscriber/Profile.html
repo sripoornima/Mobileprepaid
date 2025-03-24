@@ -1,160 +1,380 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile & Plan Details</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <title>User Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
         body {
-            display: flex;
-            height: 100vh;
-            background: #ecf0f1;
+            background: linear-gradient(135deg, #f0f2f5, #e0e4e8);
+            min-height: 100vh;
         }
-        .sidebar {
-            width: 260px;
-            background: #2C3E50;
-            color: white;
-            padding: 20px;
+
+        .greeting {
+            margin: 30px 0;
+            text-align: left;
+            padding: 0 40px;
+        }
+
+        .greeting h2 {
+            font-size: 28px;
+            color: #2c3e50;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 0 40px 40px 40px;
+        }
+
+        .card-custom {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            min-height: 300px;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+        
+        .card-custom:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+
+        .card-header-icon {
+            display: flex;
             align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
         }
-        .sidebar ul {
+
+        .card-header-icon i {
+            font-size: 24px;
+            color: #2980b9;
+        }
+
+        .card-header-icon h5 {
+            margin: 0;
+            color: #34495e;
+            font-weight: 600;
+        }
+
+        .card-content p,
+        .card-content ul li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .addon-list {
             list-style: none;
-            width: 100%;
+            padding: 0;
         }
-        .sidebar ul li {
-            padding: 15px;
-            cursor: pointer;
+
+        .addon-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .progress {
+            background-color: #e0e0e0;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+            transition: width 0.4s ease;
+        }
+        footer {
+            background: #2c3e50;
+            color: #ffffff;
+            padding: 40px 20px;
+            font-size: 14px;
             text-align: center;
-            border-radius: 5px;
-            transition: background 0.3s;
         }
-        .sidebar ul li:hover {
-            background: #34495e;
+        
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: auto;
+            text-align: left;
         }
-        .content {
+        
+        .footer-section {
             flex: 1;
-            padding: 30px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            min-width: 200px;
+            padding: 10px;
         }
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
-            min-height: 250px;
+        
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ffffff;
+            display: inline-block;
+            padding-bottom: 5px;
         }
-        .card:hover {
-            transform: scale(1.02);
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
         }
-        .profile-card {
-            text-align: center;
-        }
-        .profile-card .icon {
-            font-size: 50px;
-            color: #2C3E50;
+        
+        .footer-section ul li {
             margin-bottom: 10px;
         }
-        .details {
-            text-align: left;
+        
+        .footer-section ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
-        .edit-btn {
-            cursor: pointer;
-            font-size: 18px;
+        
+        .footer-section ul li a:hover {
+            color: #f39c12;
         }
-        .hidden {
-            display: none;
+        
+        .footer-section.social {
+            text-align: center;
         }
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
+        
+        .footer-section.social a {
+            color: #ffffff;
+            font-size: 20px;
+            margin: 0 10px;
+            display: inline-block;
+            transition: transform 0.3s ease;
         }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
+        
+        .footer-section.social a:hover {
+            transform: scale(1.2);
+            color: #f39c12;
         }
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .save-btn {
-            background: #27ae60;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            border-radius: 5px;
+        
+        .footer-bottom {
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 10px;
+            font-size: 13px;
         }
     </style>
 </head>
+
 <body>
-    <div class="sidebar">
-        <ul>
-            <li>Dashboard</li>
-            <li>Plans</li>
-            <li>Recharge</li>
-            <li>Settings</li>
-        </ul>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2f4156;">
+        <div class="container">
+            <a class="navbar-brand fs-5" href="index.html">Mobicom</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-white mx-2" href="#plans">Plans</a></li>
+                    <li class="nav-item"><a class="nav-link text-white mx-2" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link text-white mx-2" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link text-white mx-2" href="#mobile-validation">Login</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="Userlog.html" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            title="View Profile">
+                            <i class="bi bi-person-fill"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Greeting -->
+    <div class="greeting">
+        <h2>Hi, John Doe 👋</h2>
+        <p>Welcome back to your dashboard</p>
     </div>
-    <div class="content">
-        <div class="card profile-card">
-            <div class="icon">
-                <i class="bi bi-person-circle"></i>
+
+    <!-- Dashboard Grid -->
+    <div class="dashboard-grid">
+
+        <!-- Profile Card -->
+        <div class="card-custom">
+            <div id="loading" style="display: none;">Loading...</div>
+
+            <div id="profileSection" style="display: none;">
+                <p>Email: <span id="email"></span></p>
+                <p>Phone: <span id="phone"></span></p>
+                <p>Status: <span id="status"></span></p>
+                <p>Current Plan: <span id="currentPlan"></span></p>
+                <p>Expiry Date: <span id="expiryDate"></span></p>
             </div>
-            <h3>John Doe</h3>
-            <div class="details">
-                <p><strong>Email:</strong> john.doe@example.com</p>
-                <p><strong>Phone:</strong> +123456789</p>
-                <p><strong>GST Number:</strong> 1234567890ABCDE</p>
-                <p><strong>Aadhar Number:</strong> 1234-5678-9012</p>
+            
+            
+        </div>
+        
+
+        <!-- Plan Card -->
+        <div class="card-custom">
+            <div class="card-header-icon">
+                <i class="bi bi-sim-fill"></i>
+                <h5>Current Plan</h5>
             </div>
-            <span class="edit-btn" onclick="toggleEdit()">✏️</span>
+            <div class="card-content">
+                <p><strong>Plan:</strong> Unlimited 5G</p>
+                <p><strong>Expiry Date:</strong> 10th March 2025</p>
+                <p><strong>Top-Up Date:</strong> 10th Feb 2025</p>
+                <div class="usage-meter mt-3">
+                    <p><strong>Data Usage:</strong></p>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <small>80GB of 100GB used</small>
+                </div>
+                <p class="mt-2"><strong>Calls:</strong> Unlimited | <strong>SMS:</strong> 100/day</p>
+            </div>
         </div>
-        
-        <div class="card">
-            <h3>Current Plan: Unlimited 5G</h3>
-            <p><strong>Expiry Date:</strong> 10th March 2025</p>
-            <p><strong>Top-Up Date:</strong> 10th Feb 2025</p>
-            <p><strong>Data Usage:</strong> 80GB / 100GB</p>
-            <p><strong>Calls:</strong> Unlimited | <strong>SMS:</strong> 100/day</p>
+
+        <!-- Add-On Card -->
+        <div class="card-custom">
+            <div class="card-header-icon">
+                <i class="bi bi-cloud-arrow-down"></i>
+                <h5>Data Add-On Packs</h5>
+            </div>
+            <div class="card-content">
+                <ul class="addon-list">
+                    <li>1GB - ₹50</li>
+                    <li>3GB - ₹120</li>
+                    <li>5GB - ₹200</li>
+                    <li>10GB - ₹350</li>
+                </ul>
+            </div>
         </div>
-        
-        <div class="card">
-            <h3>Payment Offers</h3>
-            <p>Get 10% cashback on recharge via XYZ Wallet.</p>
-            <p>Flat ₹50 off on recharges above ₹500 using ABC Bank Credit Card.</p>
-            <p>Earn 2X reward points on every transaction.</p>
-        </div>
-        
-        <div class="card">
-            <h3>Data Add-On Packs</h3>
-            <ul>
-                <li>1GB - ₹50</li>
-                <li>3GB - ₹120</li>
-                <li>5GB - ₹200</li>
-                <li>10GB - ₹350</li>
+
+    </div>
+    <section id="terms-contact" class="bg-light py-5">
+        <div class="container text-center">
+            <h2 class="fw-bold">Terms & Conditions</h2>
+            <p class="mb-3">By accessing and using our services, you agree to the following terms:</p>
+            <ul class="list-unstyled ps-3">
+                <li class="mb-3"><i class="bi bi-check-circle-fill me-2"></i>All transactions are final and non-refundable.</li>
+                <li class="mb-3"><i class="bi bi-check-circle-fill me-2"></i>Ensure accurate details during transactions. We are not responsible for incorrect entries.</li>
+                <li class="mb-3"><i class="bi bi-check-circle-fill me-2"></i>Promotions and discounts may change without prior notice.</li>
+                <li class="mb-3"><i class="bi bi-check-circle-fill me-2"></i>For support, contact our customer service team.</li>
             </ul>
+            <hr>
+            <h2 id="contact"class="fw-bold">Get in Touch</h2>
+            <p class="lead">Need assistance? Our team is here to help!</p>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <i class="bi bi-telephone-fill fs-1"></i>
+                    <p class="fs-5 fw-semibold">Customer Care</p>
+                    <p class="text-muted">1800-123-4567</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="bi bi-envelope-fill fs-1"></i>
+                    <p class="fs-5 fw-semibold">Email Support</p>
+                    <p class="text-muted">support@mobicom.com</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="bi bi-headset fs-1"></i>
+                    <p class="fs-5 fw-semibold">Helpline</p>
+                    <p class="text-muted">198 (Complaints) | 199 (Queries)</p>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Mobicom</h3>
+                <p>Stay connected with the best mobile plans.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Care</h3>
+                <p>Email: support@mobicom.com</p>
+                <p>Phone: +91 98765 43210</p>
+            </div>
+            <div class="footer-section social">
+                <h3>Follow Us</h3><br>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Mobicom. All rights reserved.</p>
+        </div>
+    </footer>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function toggleEdit() {
-            document.getElementById("edit-form").classList.toggle("hidden");
-        }
-    </script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const mobile = localStorage.getItem("mobile");
+            console.log("Fetched Mobile from localStorage:", mobile);
+        
+            if (!mobile) {
+                alert("No mobile found. Please login again.");
+                window.location.href = "login.html";
+                return;
+            }
+        
+            // Show loader (optional)
+            document.getElementById("profileSection").style.display = "none";
+            document.getElementById("loading").style.display = "block";
+        
+            fetch(`http://localhost:9091/api/users/mobile/${mobile}`, { // use dynamic mobile
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                credentials: "include"
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok " + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById("email").innerText = data.email;
+                document.getElementById("phone").innerText = data.phone;
+                document.getElementById("status").innerText = data.status;
+                document.getElementById("currentPlan").innerText = data.currentPlan || "N/A";
+                document.getElementById("expiryDate").innerText = data.expiryDate || "N/A";
+        
+                // Hide loader and show profile section
+                document.getElementById("loading").style.display = "none";
+                document.getElementById("profileSection").style.display = "block";
+            })
+            .catch(error => {
+                console.error("There was a problem with the fetch operation:", error);
+            });
+        });
+        </script>
+        
+      
+    
 </body>
+
 </html>
