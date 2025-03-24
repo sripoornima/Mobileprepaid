@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Mobile Prepaid Landing Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+        }
+        
+        .navbar {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: #fff !important;
+        }
+        
+        .carousel-item img {
+            height: 100vh;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+        
+        .carousel-caption {
+            bottom: 35%;
+        }
+        
+        .carousel-caption h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        
+        .carousel-caption p {
+            font-size: 1.2rem;
+        }
+        
+        .btn-custom {
+            background: #ff416c;
+            background: linear-gradient(to right, #ff4b2b, #ff416c);
+            border: none;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            color: #fff;
+            transition: all 2s ease;
+        }
+        
+        .btn-custom:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+        }
+        
+        .features-section {
+            margin-top: 3rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        /* Fixed: no overlap with carousel */
+        #mobile-validation {
+            margin-top: 3rem;
+            z-index: auto;
+            position: relative;
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(20,20,40,0.5));
+        }
+        
+        input.form-control {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+        
+        input.form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        input.form-control:focus {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">PrepaidPro</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Plans</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<!-- Carousel -->
+<div id="landingCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#landingCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#landingCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#landingCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+
+    <!-- Slides -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://images.unsplash.com/photo-1556745757-8d76bdb6984b?auto=format&fit=crop&w=1950&q=80"
+                class="d-block w-100" alt="Prepaid Plan">
+            <div class="carousel-caption text-center">
+                <h1>Stay Connected with Confidence</h1>
+                <p>Experience blazing fast 5G with our unbeatable prepaid plans</p>
+                <a href="#" class="btn btn-custom mt-3">View Plans</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1950&q=80"
+                class="d-block w-100" alt="Unlimited Data & Talktime">
+            <div class="carousel-caption text-center">
+                <h1>Unlimited Data & Talktime</h1>
+                <p>Get more value with our all-in-one packages</p>
+                <a href="#" class="btn btn-custom mt-3">Get Started</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1950&q=80"
+                class="d-block w-100" alt="Mobile Freedom">
+            <div class="carousel-caption text-center">
+                <h1>Switch & Save Instantly</h1>
+                <p>Seamless switching without changing your number</p>
+                <a href="#" class="btn btn-custom mt-3">Join Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#landingCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#landingCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+    <!-- Mobile Number Validation Section -->
+    <section id="mobile-validation" class="container d-flex justify-content-center align-items-center">
+        <div class="glass-card w-50">
+            <h2 class="text-center mb-4">Mobile Prepaid Recharge</h2>
+            <form id="mobileForm">
+                <div class="mb-3">
+                    <label for="mobileNumber" class="form-label fw-bold">Enter Mobile Number</label>
+                    <input type="text" class="form-control border-0 rounded-4 p-3" id="mobileNumber"
+                        placeholder="Enter your 10-digit mobile number" required>
+                    <small id="mobileError" class="text-danger d-none mt-2">Invalid mobile number! Please enter a valid 10-digit number.</small>
+                </div>
+                <div class="text-center">
+                    <button type="button" class="btn btn-custom w-50 rounded-pill" onclick="validateLogin()">Login</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section py-5">
+        <div class="container">
+            <h2 class="section-title">Why Choose PrepaidPro?</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="glass-card text-center">
+                        <h4>Lightning Fast 5G</h4>
+                        <p>Enjoy ultra-fast downloads and smooth streaming with our cutting-edge 5G network.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card text-center">
+                        <h4>Flexible Plans</h4>
+                        <p>Pick from a variety of data, talktime, and combo packs tailored to your needs.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card text-center">
+                        <h4>No Hidden Fees</h4>
+                        <p>What you see is what you pay. No surprises, just transparent pricing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Validation JS -->
+    <script>
+        function validateLogin() {
+            const mobileInput = document.getElementById('mobileNumber');
+            const errorText = document.getElementById('mobileError');
+            const mobileNumber = mobileInput.value.trim();
+            const valid = /^[0-9]{10}$/.test(mobileNumber);
+        }
+
+        </script>
+</body>
+</html>
