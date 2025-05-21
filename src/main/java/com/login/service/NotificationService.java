@@ -1,24 +1,34 @@
 package com.login.service;
 
 import java.util.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
+import jakarta.annotation.PostConstruct;
+
 @Service
 public class NotificationService {
 
-    private static final String ACCOUNT_SID = "AC2ed9f51baa61f6eb2ab5bf31876cf171";
-    private static final String AUTH_TOKEN = "83b93562805d08623fdf674a33b491be";
-    private static final String FROM_NUMBER = "+19382044018";
+    @Value("${twilio.account_sid}")
+    private String accountSid;
 
-    // Optional: OTP with timestamp to add expiry logic
-    private static final Map<String, OtpData> otpStore = new HashMap<>();
+    @Value("${twilio.auth_token}")
+    private String authToken;
 
-    static {
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+    @Value("${twilio.from_number}")
+    private String fromNumber;
+
+    // Initialize SDK after Spring injects the config values
+    @PostConstruct
+    public void initTwilio() {
+        Twilio.init(accountSid, authToken);
     }
+
+    // OTP storage with timestamp
+    private static final Map<String, OtpData> otpStore = new HashMap<>();
 
     public String sendOtp(String toNumber) {
         String normalizedNumber = normalizePhoneNumber(toNumber);
@@ -31,7 +41,7 @@ public class NotificationService {
 
         Message message = Message.creator(
                 new PhoneNumber(normalizedNumber),
-                new PhoneNumber(FROM_NUMBER),
+                new PhoneNumber(fromNumber),
                 body
         ).create();
 
@@ -46,7 +56,7 @@ public class NotificationService {
         OtpData otpData = otpStore.get(normalizedNumber);
 
         if (otpData != null) {
-            // Optional TTL logic: expire OTP after 5 mins
+            // Expire OTP after 5 minutes
             if (System.currentTimeMillis() - otpData.timestamp > 5 * 60 * 1000) {
                 otpStore.remove(normalizedNumber);
                 System.out.println("OTP expired for " + normalizedNumber);
@@ -59,7 +69,8 @@ public class NotificationService {
             }
         }
 
-        System.out.println("OTP verification failed for " + normalizedNumber + ". Expected OTP: " + (otpData != null ? otpData.code : "null") + ", Received OTP: " + otp);
+        System.out.println("OTP verification failed for " + normalizedNumber + ". Expected OTP: " 
+            + (otpData != null ? otpData.code : "null") + ", Received OTP: " + otp);
         return false;
     }
 
@@ -84,7 +95,7 @@ public class NotificationService {
         return String.valueOf(otp);
     }
 
-    // Helper inner class for OTP + timestamp
+    // Helper inner class for OTP + time stamp
     private static class OtpData {
         String code;
         long timestamp;
