@@ -12,7 +12,7 @@ import jakarta.annotation.PostConstruct;
 @Service
 public class NotificationService {
 
-    @Value("${twilio.account_sid}")
+   @Value("${twilio.account_sid}")
     private String accountSid;
 
     @Value("${twilio.auth_token}")
