@@ -1,4 +1,3 @@
-Here's a clean and professional `README.md` template for your **MobilePrepaid Maven-based Java project**, suitable for GitHub. You can customize it further with badges, screenshots, or contribution instructions if needed.
 
 ---
 
@@ -100,19 +99,7 @@ git clone -b version-before-safe-commit https://github.com/sripoornima/Mobilepre
 * JUnit tests can be added under `src/test/java`
 * Use Postman or Swagger to test REST APIs
 
----
-
-## 🤝 Contribution
-
-Feel free to fork the project and submit pull requests. Branching strategy and commit naming conventions are encouraged.
-
----
-
-## 🧾 License
-
-This project is licensed under the MIT License.
-
----
+-
 
 ## 👩‍💻 Author
 
@@ -122,12 +109,4 @@ This project is licensed under the MIT License.
 
 ```
 
----
 
-Let me know if you want to:
-- Add badges (build status, license, etc.)
-- Include frontend screenshots
-- Write installation steps in Telugu or another language
-
-I can help tailor this further for your GitHub repo!
-```
